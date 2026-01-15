@@ -17,7 +17,7 @@ const TopDoctorBadge: React.FC = () => {
       {/* Magazine Cover Thumbnail */}
       <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/30 shrink-0">
         <img
-          src="/images/top-doctor-cover.webp"
+          src="/assets/top-doctor-cover.webp"
           alt="Top Doctor Magazine Cover"
           className="w-full h-full object-cover"
         />

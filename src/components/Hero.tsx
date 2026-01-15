@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import TopDoctorBadge from "./ui/TopDoctorBadge";
 import TrustBar from "./ui/TrustBar";
+import ProductVideo from "./ui/ProductVideo";
 
 interface HeroProps {
   // Props can be added here if needed
@@ -50,16 +51,9 @@ const Hero: React.FC<HeroProps> = () => {
           <TrustBar />
         </div>
 
-        {/* Right Column: Visual (Placeholder for Chamber Image) */}
+        {/* Right Column: Visual (Product Video) */}
         <div className="relative">
-          {/* Using a placeholder div to represent where the chamber image will go */}
-          <div className="aspect-[4/3] bg-gradient-to-br from-brand-blue/30 to-brand-navy border border-white/10 rounded-xl relative flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center text-white/20 font-bold text-2xl uppercase tracking-widest rotate-[-15deg]">
-              Product Image Asset
-            </div>
-            {/* Simulated Reflection/Glow */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/5 to-transparent"></div>
-          </div>
+          <ProductVideo />
         </div>
       </div>
     </section>

@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 const TrustBar: React.FC = () => {
   const logos = [
-    { src: "/images/ISO_9001-2015.png", alt: "ISO 9001:2015 Certified" },
-    { src: "/images/iso-13485.avif", alt: "ISO 13485 Medical Devices" },
-    { src: "/images/ce-logo.png", alt: "CE Mark Approved" },
-    { src: "/images/asme-logo-.png", alt: "ASME Certified" },
+    { src: "/assets/ISO_9001-2015.png", alt: "ISO 9001:2015 Certified" },
+    { src: "/assets/iso-13485.avif", alt: "ISO 13485 Medical Devices" },
+    { src: "/assets/ce-logo.png", alt: "CE Mark Approved" },
+    { src: "/assets/asme-logo-.png", alt: "ASME Certified" },
   ];
 
   const containerVariants = {
@@ -48,6 +48,10 @@ const TrustBar: React.FC = () => {
             src={logo.src}
             alt={logo.alt}
             className="h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+            whileHover={{
+              scale: 1.05,
+              transition: { type: "spring", stiffness: 400, damping: 10 },
+            }}
           />
         ))}
       </motion.div>

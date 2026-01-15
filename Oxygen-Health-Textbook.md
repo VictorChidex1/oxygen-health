@@ -85,7 +85,7 @@ const TopDoctorBadge: React.FC = () => {
         </div>
 
         {/* 6. THE TEXT */}
-        <span className="text-xs font-semibold uppercase tracking-wide">
+        <span className="text-xs font-semibold text-white/90 tracking-wide uppercase">
           Featured on Top Doctor Magazine
         </span>
       </div>
@@ -93,3 +93,102 @@ const TopDoctorBadge: React.FC = () => {
   );
 };
 ```
+
+## Chapter 6: The Spark (Framer Motion Animation)
+
+In this session, we brought the "Medical Authority" design to life with physics-based animations. We didn't just make things move; we made them feel _real_.
+
+### 1. What Did We Actually Do?
+
+We installed **Framer Motion**, the industry-standard animation library for React. Then we implemented two distinct types of motion:
+
+1.  **The "Gentle Drop" (TopDoctorBadge)**: A smooth entrance that draws the eye upward without startling the user.
+2.  **The "Staggered Flow" (TrustBar)**: A domino-effect entrance for the logos, reinforcing that there are _multiple_ layers of safety.
+3.  **The "Tactile Hover" (Interaction)**: A spring-based bounce that invites the user to touch and click.
+
+---
+
+### 2. Key Terminologies
+
+| Term                  | Analogy             | Description                                                                                                                         |
+| :-------------------- | :------------------ | :---------------------------------------------------------------------------------------------------------------------------------- |
+| **motion.div**        | The Magic Wrapper   | A special HTML tag from Framer Motion. It's like a normal `<div>`, but it knows how to dance.                                       |
+| **Initial / Animate** | Start / Finish Line | `initial` is where the object starts (hidden, y=-20). `animate` is where it ends (visible, y=0).                                    |
+| **Variants**          | Choreography Notes  | A reusable set of instructions (like a dance routine) that we pass to multiple elements so they move in sync.                       |
+| **StaggerChildren**   | The Domino Effect   | A setting that tells a parent container: "Don't show all your kids at once. Show them one by one, 0.2 seconds apart."               |
+| **Spring Physics**    | A Physical Spring   | Instead of moving linearly (robotic), `type: "spring"` calculates movement based on mass, stiffness, and damping. It feels natural. |
+
+---
+
+### 3. Code Deep Dive: The Trust Bar
+
+We used **Variants** here to handle the complex "domino" effect of the 4 logos.
+
+```tsx
+// 1. THE CHOREOGRAPHY (Variants)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // THE MAGIC: Wait 0.2s between each child
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 }, // Start slightly down and invisible
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }, // Rise up smoothly
+  },
+};
+
+// 2. THE PARENT (The Orchestra Conductor)
+<motion.div
+  variants={containerVariants} // Hand the sheet music to the conductor
+  initial="hidden" // Everyone start at "hidden"
+  whileInView="visible" // When the user scrolls to this section, switch to "visible"
+  viewport={{ once: true }} // Only do this animation once
+>
+  {logos.map((logo) => (
+    // 3. THE CHILDREN (The Dancers)
+    <motion.img
+      variants={itemVariants} // They automatically inherit the "hidden" -> "visible" signal
+      src={logo.src}
+      whileHover={{
+        scale: 1.05,
+        transition: { type: "spring", stiffness: 400, damping: 10 }, // The "Tactile" Bounce
+      }}
+    />
+  ))}
+</motion.div>;
+```
+
+### 4. Code Deep Dive: The Top Doctor Badge
+
+Here we used "Direct Props" because it was a single element, simpler than the list above.
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: -20 }}  // Start: Invisible and 20px higher
+  animate={{ opacity: 1, y: 0 }}    // End: Visible and natural position
+  transition={{ duration: 0.6, ease: "easeOut" }}    // Take 0.6 seconds to settle
+  whileHover={{
+    scale: 1.05,
+    // Stiffness 400 = Taught spring (snappy)
+    // Damping 10 = How fast the bouncing stops
+    transition: { type: "spring", stiffness: 400, damping: 10 }
+  }}
+>
+```
+
+### 5. Why This Matters
+
+We didn't just add animation for fun.
+
+1.  **Entrance Animations** (`y: -20` to `0`) grab attention. They say "Look here, this is important."
+2.  **Spring Hovers** (`scale: 1.05`) provide feedback. They say "Yes, I am interactive. You can click me."
+
+This builds **subconscious trust**. A clunky, static site feels cheap. A smooth, reactive site feels expensive and professional—exactly what we need for a medical device.
