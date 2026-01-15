@@ -1,0 +1,21 @@
+{
+  "short_name": "Oxygen",
+  "name": "Oxygen Health Systems",
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0f2d63",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#0f2d63"
+}
