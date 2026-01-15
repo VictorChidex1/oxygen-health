@@ -1,16 +1,94 @@
-# React + Vite
+# Oxygen Health - Clinical Grade Hyperbaric Chambers
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the official landing page repository for Oxygen Health Systems, designed with a "Clinical Authority" aesthetic to build trust and convert high-ticket sales.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Framework**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Backend/Hosting**: [Firebase](https://firebase.google.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Hero Section ("The Trust Layer")
 
-## Expanding the ESLint configuration
+- **Top Doctor Authority Badge**: Glassmorphism design with a "Gentle Drop" entrance animation and "Spring Physics" hover effect.
+- **Trust Bar**: Staggered fade-in entrance for ISO/ASME certification logos.
+- **Product Video**: Custom video component with a soft glow effect and a pulsed "LIVE VIEW" badge.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. Design System ("Clinical Palette")
+
+- **Brand Navy**: `#0f2d63` (Primary Background)
+- **Action Blue**: `#1651a9` (Primary Buttons)
+- **Medical White**: `#FFFFFF` (Text & Accents)
+- **Trust Accents**: Metallic Gold & Silver nuances.
+
+### 3. Architecture
+
+- **Component-Based**: Modular UI components located in `src/components/ui`.
+- **Secure Env**: Firebase keys stored in `.env.local`.
+- **Asset Management**: Images and videos served from `public/assets`.
+
+## 🛠️ Getting Started
+
+1.  **Clone the repository**:
+
+    ```bash
+    git clone https://github.com/VictorChidex1/oxygen-health.git
+    cd oxygen-health
+    ```
+
+2.  **Install dependencies**:
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**:
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production**:
+    ```bash
+    npm run build
+    ```
+
+## 📂 Project Structure
+
+```
+oxygen-health/
+├── public/
+│   └── assets/          # Static images and videos (ISOs, badges, logos)
+├── src/
+│   ├── components/
+│   │   ├── ui/          # Reusable UI components (TrustBar, ProductVideo, etc.)
+│   │   └── Hero.tsx     # Main Hero section
+│   ├── firebase.ts      # Firebase configuration
+│   ├── index.css        # Tailwind directives and global styles
+│   ├── main.tsx         # Application entry point
+│   └── vite-env.d.ts    # TypeScript definitions
+├── .env.local           # Environment variables (GitIgnored)
+└── tailwind.config.ts   # Design system configuration
+```
+
+## 🔒 Security
+
+- API Keys are accessed via `import.meta.env` and stored in `.env.local`.
+- Strict TypeScript linting ensures code reliability.
+
+## 🤝 Contribution
+
+This project follows a strict "Clinical Grade" design philosophy.
+
+- No playful animations.
+- High contrast, professional typography.
+- Accessibility first.
+
+---
+
+_Built with precision for Oxygen Health Systems._

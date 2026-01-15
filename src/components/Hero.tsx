@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import TopDoctorBadge from "./ui/TopDoctorBadge";
 import TrustBar from "./ui/TrustBar";
 import ProductVideo from "./ui/ProductVideo";
@@ -39,13 +40,24 @@ const Hero: React.FC<HeroProps> = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 text-lg">
+            {/* Primary Button: "Get Usage Guide" */}
+            <motion.button
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ y: 1, scale: 0.98 }}
+              className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
+            >
               Get Usage Guide
               <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded hover:bg-white/10 transition-colors">
+            </motion.button>
+
+            {/* Secondary Button: "View Specs" */}
+            <motion.button
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ y: 1, scale: 0.98 }}
+              className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:bg-white/5 transition-all active:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
+            >
               View Specs
-            </button>
+            </motion.button>
           </div>
 
           <TrustBar />
