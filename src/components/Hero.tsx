@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ShieldCheck, CheckCircle, ArrowRight } from "lucide-react";
-// import posthog from 'posthog-js'; // Commented out until initialized in main
+import { ArrowRight } from "lucide-react";
+import TopDoctorBadge from "./ui/TopDoctorBadge";
+import TrustBar from "./ui/TrustBar";
 
 interface HeroProps {
   // Props can be added here if needed
@@ -13,7 +14,7 @@ const Hero: React.FC<HeroProps> = () => {
   useEffect(() => {
     // const variant = posthog.getFeatureFlag('hero_headline_test');
     // if (variant === 'test') {
-    //   setHeadline("Recover Faster with Medical-Grade Oxygen.");
+    //   // setHeadline("Recover Faster with Medical-Grade Oxygen.");
     // }
     // Initialize logic would go here or in a context
   }, []);
@@ -25,17 +26,7 @@ const Hero: React.FC<HeroProps> = () => {
       <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Column: Text & CTA */}
         <div className="text-left space-y-6">
-          {/* Badge Area */}
-          <div className="flex flex-wrap gap-3 mb-4">
-            <div className="flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs font-semibold uppercase tracking-wider">
-              <ShieldCheck className="w-4 h-4 text-brand-blue" />
-              <span>FDA Cleared Class II</span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs font-semibold uppercase tracking-wider">
-              <CheckCircle className="w-4 h-4 text-green-400" />
-              <span>ASME Certified</span>
-            </div>
-          </div>
+          <TopDoctorBadge />
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-white leading-tight font-sans">
             {headline}
@@ -56,12 +47,7 @@ const Hero: React.FC<HeroProps> = () => {
             </button>
           </div>
 
-          {/* Trust Signals / Micro-copy */}
-          <div className="pt-8 flex items-center gap-6 text-sm text-gray-400">
-            <span>Trusted by 500+ Clinics</span>
-            <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
-            <span>Lifetime Warranty Available</span>
-          </div>
+          <TrustBar />
         </div>
 
         {/* Right Column: Visual (Placeholder for Chamber Image) */}
