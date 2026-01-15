@@ -1,12 +1,20 @@
 import Hero from "./components/sections/Hero";
 import Comparison from "./components/sections/Comparison";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
   return (
-    <main>
-      <Hero />
-      <Comparison />
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <div id="safety">
+          <Hero />
+        </div>
+        <div id="comparison">
+          <Comparison />
+        </div>
+      </main>
+    </>
   );
 }
 

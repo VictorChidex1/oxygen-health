@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = () => {
   }, []);
 
   return (
-    <section className="relative bg-brand-navy min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative bg-brand-navy min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 md:pt-0">
       <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Column: Text & CTA */}
         <div className="text-left space-y-6">
@@ -44,7 +44,8 @@ const Hero: React.FC<HeroProps> = () => {
             <motion.button
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ y: 1, scale: 0.98 }}
-              className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
+              className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] 
+              hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
             >
               Get Pricing
               <ArrowRight className="w-5 h-5" />

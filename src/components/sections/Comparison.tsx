@@ -1,5 +1,6 @@
 import React from "react";
 import { CheckCircle, XCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface ComparisonFeature {
   name: string;
@@ -42,7 +43,13 @@ const Comparison: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 space-y-4"
+        >
           <span className="text-brand-blue font-bold tracking-widest uppercase text-sm">
             Why Choose Us
           </span>
@@ -53,12 +60,19 @@ const Comparison: React.FC = () => {
             See why clinical professionals trust Oxygen Health Systems over
             generic imported alternatives.
           </p>
-        </div>
+        </motion.div>
 
         {/* Comparison Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Column 1: Competitors (The "Old" Way) - Light Gray Card */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            whileHover={{ backgroundColor: "rgba(241, 245, 249, 1)" }} // bg-slate-100
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-slate-50 border border-slate-200 rounded-2xl p-8 relative overflow-hidden"
+          >
             <h3 className="text-xl font-bold text-slate-500 mb-8 flex items-center gap-3">
               <XCircle className="w-6 h-6 text-slate-400" />
               Generic / Competitors
@@ -79,10 +93,20 @@ const Comparison: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Column 2: OXYGEN PROTOCOL (The "New" Way) - Navy Card */}
-          <div className="bg-brand-navy border border-brand-blue shadow-2xl shadow-brand-blue/20 rounded-2xl p-8 relative overflow-hidden transform md:-translate-y-4 md:scale-105 z-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1.05, y: 0 }}
+            whileHover={{
+              y: -5,
+              boxShadow: "0 25px 50px -12px rgba(22, 81, 169, 0.4)", // Enhanced glow
+            }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+            className="bg-brand-navy border border-brand-blue shadow-2xl shadow-brand-blue/20 rounded-2xl p-8 relative overflow-hidden z-10"
+          >
             {/* Glossy sheen */}
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-white/10 to-transparent pointer-events-none" />
 
@@ -107,7 +131,7 @@ const Comparison: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
