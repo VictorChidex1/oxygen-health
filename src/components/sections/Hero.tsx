@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import TopDoctorBadge from "./ui/TopDoctorBadge";
-import TrustBar from "./ui/TrustBar";
-import ProductVideo from "./ui/ProductVideo";
+import TopDoctorBadge from "../ui/TopDoctorBadge";
+import TrustBar from "../ui/TrustBar";
+import ProductVideo from "../ui/ProductVideo";
 
 interface HeroProps {
   // Props can be added here if needed
@@ -23,12 +23,12 @@ const Hero: React.FC<HeroProps> = () => {
 
   return (
     <section className="relative bg-brand-navy min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background Decorator - subtle gradient/pattern if needed, keeping it solid for now as per strict request */}
-
       <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Column: Text & CTA */}
         <div className="text-left space-y-6">
-          <TopDoctorBadge />
+          <div className="flex justify-center md:justify-start">
+            <TopDoctorBadge />
+          </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-white leading-tight font-sans">
             {headline}
@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = () => {
               whileTap={{ y: 1, scale: 0.98 }}
               className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
             >
-              Get Usage Guide
+              Get Pricing
               <ArrowRight className="w-5 h-5" />
             </motion.button>
 

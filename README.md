@@ -66,12 +66,15 @@ oxygen-health/
 │   └── assets/          # Static images and videos (ISOs, badges, logos)
 ├── src/
 │   ├── components/
-│   │   ├── ui/          # Reusable UI components (TrustBar, ProductVideo, etc.)
-│   │   └── Hero.tsx     # Main Hero section
-│   ├── firebase.ts      # Firebase configuration
-│   ├── index.css        # Tailwind directives and global styles
-│   ├── main.tsx         # Application entry point
-│   └── vite-env.d.ts    # TypeScript definitions
+│   │   ├── layout/      # Global wrappers (Navbar, Footer)
+│   │   ├── sections/    # Main blocks (Hero, etc.)
+│   │   └── ui/          # Reusable UI components (Buttons, Badges)
+│   ├── hooks/           # Custom React Hooks
+│   ├── lib/             # Configuration & Helpers (Firebase, Utils)
+│   ├── types/           # TypeScript Definitions
+│   ├── App.tsx          # Main Layout Structure
+│   ├── main.tsx         # Entry Point
+│   └── index.css        # Global Styles
 ├── .env.local           # Environment variables (GitIgnored)
 └── tailwind.config.ts   # Design system configuration
 ```

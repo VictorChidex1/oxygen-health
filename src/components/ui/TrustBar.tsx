@@ -47,7 +47,7 @@ const TrustBar: React.FC = () => {
             variants={itemVariants}
             src={logo.src}
             alt={logo.alt}
-            className="h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+            className="h-10 w-auto object-contain opacity-70 hover:opacity-100 screen transition-opacity duration-300"
             whileHover={{
               scale: 1.05,
               transition: { type: "spring", stiffness: 400, damping: 10 },
