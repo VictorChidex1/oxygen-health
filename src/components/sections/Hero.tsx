@@ -44,6 +44,11 @@ const Hero: React.FC<HeroProps> = () => {
             <motion.button
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ y: 1, scale: 0.98 }}
+              onClick={() =>
+                alert(
+                  "Demo Mode: This will open the Lead Capture Form once we connect your GoHighLevel CRM."
+                )
+              }
               className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] 
               hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
             >

@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
             <img
-              src="/assets/favicon.png"
+              src="/assets/logo.png"
               alt="Oxygen Health Logo"
               className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
@@ -75,6 +75,11 @@ const Navbar: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() =>
+                alert(
+                  "Demo Mode: This will open the Lead Capture Form once we connect your GoHighLevel CRM."
+                )
+              }
               className={`px-5 py-2.5 rounded-full font-bold text-sm shadow-[0_0_20px_-5px_rgba(0,0,0,0.1)] hover:shadow-[0_0_25px_-5px_rgba(0,0,0,0.2)] transition-all ${
                 isScrolled
                   ? "bg-white text-brand-navy shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
