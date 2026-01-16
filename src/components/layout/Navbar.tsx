@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onOpen: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -35,7 +39,7 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
             <img
-              src="/assets/logo.png"
+              src="/assets/favicon.png"
               alt="Oxygen Health Logo"
               className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
@@ -75,11 +79,7 @@ const Navbar: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() =>
-                alert(
-                  "Demo Mode: This will open the Lead Capture Form once we connect your GoHighLevel CRM."
-                )
-              }
+              onClick={onOpen}
               className={`px-5 py-2.5 rounded-full font-bold text-sm shadow-[0_0_20px_-5px_rgba(0,0,0,0.1)] hover:shadow-[0_0_25px_-5px_rgba(0,0,0,0.2)] transition-all ${
                 isScrolled
                   ? "bg-white text-brand-navy shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
@@ -132,7 +132,13 @@ const Navbar: React.FC = () => {
                   <Phone className="w-5 h-5 text-green-400" />
                   +1 (630) 812-7865
                 </a>
-                <button className="w-full bg-white text-brand-navy py-4 rounded-xl font-bold text-lg shadow-lg">
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpen();
+                  }}
+                  className="w-full bg-white text-brand-navy py-4 rounded-xl font-bold text-lg shadow-lg"
+                >
                   Get Pricing
                 </button>
               </div>
