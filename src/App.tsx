@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hero from "./components/sections/Hero";
 import Comparison from "./components/sections/Comparison";
 import Navbar from "./components/layout/Navbar";
+import Safety from "./components/sections/Safety";
 import PricingModal from "./components/ui/PricingModal";
 
 function App() {
@@ -11,11 +12,15 @@ function App() {
     <>
       <Navbar onOpen={() => setIsModalOpen(true)} />
       <main>
-        <div id="safety">
+        <div id="hero">
           <Hero onOpen={() => setIsModalOpen(true)} />
         </div>
+
         <div id="comparison">
           <Comparison />
+        </div>
+        <div id="safety">
+          <Safety />
         </div>
       </main>
       <PricingModal
