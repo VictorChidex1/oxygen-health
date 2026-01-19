@@ -100,7 +100,7 @@ const Safety: React.FC = () => {
                   className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 rounded-full bg-brand-blue/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_-3px_rgba(59,130,246,0.3)]">
-                    <feature.icon className="w-6 h-6 text-brand-blue" />
+                    <feature.icon className="w-6 h-6 text-blue-200" />
                   </div>
                   <h3 className="text-lg font-bold text-white mb-2">
                     {feature.title}

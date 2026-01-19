@@ -704,3 +704,180 @@ transition={{ type: "spring", stiffness: 100, delay: 0.4 }} // Bouncy spring, wa
 ### 5. Why This Works
 
 This is **Neuro-Design**. We aren't just making things move; we are hijacking the user's dopamine system. The brain loves things that respond to touch (Hover) and things that appear with "weight" (Springs). By giving the Oxygen card _better physics_, we subconsciously tell the user it is a _better product_.
+
+`## Chapter 13: The Shield (Building the Safety Section)
+
+In this session, we built the **Safety Section**, arguably the most critical part of the page for conversion. This section answers the client's biggest fear: _"Is this thing safe?"_
+
+### 1. What Did We Actually Do?
+
+1.  **The "Visual Anchor" (Cropping Logic)**: We had a portrait-style magazine cover ("Top Doctor") that was getting decapitated by the CSS. The "Top Doctor" header—our biggest credibility signal—was being cut off. We fixed this using `object-top`.
+2.  **The "Glass Shield" (UI Design)**: We built a split-screen layout.
+    - **Left**: A visual proof (Magazine Cover) shielded by a glowing "ISO Certified" badge.
+    - **Right**: The logical argument ("Penta-Seam Welding", "Dual-Redundancy").
+
+---
+
+### 2. Key Terminologies
+
+| Term           | Analogy           | Description                                                                                                                                          |
+| :------------- | :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **object-top** | The Face Framer   | Tells the browser: "If you have to crop this image, START from the Top." It ensures the heads/titles are never cut off.                              |
+| **opacity-90** | The Tinted Window | `opacity-60` was too dark (like heavy tint). `opacity-90` lets almost all the light through, making the text readable while still blending slightly. |
+| **Flex/Grid**  | The Skeleton      | We used `grid lg:grid-cols-2` to split the screen perfectly in half on large screens, but stack them on mobile.                                      |
+| **absolute**   | The Sticker       | We used `absolute` positioning to stick the "ISO Certified" badge on top of the image, like placing a sticker on a photograph.                       |
+
+---
+
+### 3. The Logic: "The Anchor Point"
+
+The user reported a critical bug: _The "Top Doctor" title was missing._
+
+**The Problem**:
+CSS `object-cover` is smart, but it usually centers the image. If the container is a square and the image is a tall rectangle, it chops off the top and bottom equally.
+
+**The Fix**:
+
+```css
+object-top
+```
+
+This forces the crop to happen _only_ at the bottom.
+
+- **Top of image**: Always visible (Headers, Faces).
+- **Bottom of image**: Sacrificed if necessary (Legs, Floor).
+
+---
+
+### 4. Code Deep Dive
+
+Let's dissect the critical fix in `src/components/sections/Safety.tsx`.
+
+```tsx
+<div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
+  <img
+    src="/assets/top-doctor-cover.webp"
+    // 1. THE CROP FIX
+    className="
+      w-full h-full 
+      object-cover 
+      object-top      /* <--- CRITICAL: Pin image to top */
+      opacity-90      /* <--- VISIBILITY: Make it clear */
+      group-hover:scale-105 
+      transition-transform 
+      duration-700
+    "
+    alt="Top Doctor Magazine Feature"
+  />
+</div>
+```
+
+**Why `opacity-90`?**
+Originally, we had `opacity-60`. It looked "cool" and "moody," but it hid the text.
+
+- **Rule of Thumb**: If the text _in_ the image is the selling point, do not dim it. We bumped it to 90% so Michael's face and the "Top Doctor" headline are unmissable.
+
+**The "Floating Badge" Logic**:
+
+```tsx
+<div className="absolute bottom-8 left-8 z-20 ...">
+   <CheckCircle2 ... />
+   <p>ISO 13485 Certified</p>
+</div>
+```
+
+- **absolute**: Removes the badge from the normal flow. It floats above everything.
+- **bottom-8 left-8**: 32px from the bottom, 32px from the left.
+- **z-20**: "Layer 20". Ensures it sits _on top_ of the image (which is z-0) and the gradient overlays (z-10).
+
+### 5. Summary
+
+We didn't just place an image; we **engineered** the crop. By using `object-top`, we ensured that no matter how the user resizes their screen, the "Authority Signal" (The Magazine Title) remains untouched.
+## Chapter 13: The Shield (Building the Safety Section)
+
+In this session, we built the **Safety Section**, arguably the most critical part of the page for conversion. This section answers the client's biggest fear: _"Is this thing safe?"_
+
+### 1. What Did We Actually Do?
+
+1.  **The "Visual Anchor" (Cropping Logic)**: We had a portrait-style magazine cover ("Top Doctor") that was getting decapitated by the CSS. The "Top Doctor" header—our biggest credibility signal—was being cut off. We fixed this using `object-top`.
+2.  **The "Glass Shield" (UI Design)**: We built a split-screen layout.
+    - **Left**: A visual proof (Magazine Cover) shielded by a glowing "ISO Certified" badge.
+    - **Right**: The logical argument ("Penta-Seam Welding", "Dual-Redundancy").
+
+---
+
+### 2. Key Terminologies
+
+| Term           | Analogy           | Description                                                                                                                                          |
+| :------------- | :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **object-top** | The Face Framer   | Tells the browser: "If you have to crop this image, START from the Top." It ensures the heads/titles are never cut off.                              |
+| **opacity-90** | The Tinted Window | `opacity-60` was too dark (like heavy tint). `opacity-90` lets almost all the light through, making the text readable while still blending slightly. |
+| **Flex/Grid**  | The Skeleton      | We used `grid lg:grid-cols-2` to split the screen perfectly in half on large screens, but stack them on mobile.                                      |
+| **absolute**   | The Sticker       | We used `absolute` positioning to stick the "ISO Certified" badge on top of the image, like placing a sticker on a photograph.                       |
+
+---
+
+### 3. The Logic: "The Anchor Point"
+
+The user reported a critical bug: _The "Top Doctor" title was missing._
+
+**The Problem**:
+CSS `object-cover` is smart, but it usually centers the image. If the container is a square and the image is a tall rectangle, it chops off the top and bottom equally.
+
+**The Fix**:
+
+```css
+object-top
+```
+
+This forces the crop to happen _only_ at the bottom.
+
+- **Top of image**: Always visible (Headers, Faces).
+- **Bottom of image**: Sacrificed if necessary (Legs, Floor).
+
+---
+
+### 4. Code Deep Dive
+
+Let's dissect the critical fix in `src/components/sections/Safety.tsx`.
+
+```tsx
+<div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
+  <img
+    src="/assets/top-doctor-cover.webp"
+    // 1. THE CROP FIX
+    className="
+      w-full h-full 
+      object-cover 
+      object-top      /* <--- CRITICAL: Pin image to top */
+      opacity-90      /* <--- VISIBILITY: Make it clear */
+      group-hover:scale-105 
+      transition-transform 
+      duration-700
+    "
+    alt="Top Doctor Magazine Feature"
+  />
+</div>
+```
+
+**Why `opacity-90`?**
+Originally, we had `opacity-60`. It looked "cool" and "moody," but it hid the text.
+
+- **Rule of Thumb**: If the text _in_ the image is the selling point, do not dim it. We bumped it to 90% so Michael's face and the "Top Doctor" headline are unmissable.
+
+**The "Floating Badge" Logic**:
+
+```tsx
+<div className="absolute bottom-8 left-8 z-20 ...">
+   <CheckCircle2 ... />
+   <p>ISO 13485 Certified</p>
+</div>
+```
+
+- **absolute**: Removes the badge from the normal flow. It floats above everything.
+- **bottom-8 left-8**: 32px from the bottom, 32px from the left.
+- **z-20**: "Layer 20". Ensures it sits _on top_ of the image (which is z-0) and the gradient overlays (z-10).
+
+### 5. Summary
+
+We didn't just place an image; we **engineered** the crop. By using `object-top`, we ensured that no matter how the user resizes their screen, the "Authority Signal" (The Magazine Title) remains untouched.
