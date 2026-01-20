@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
             <img
-              src="/assets/favicon.png"
+              src="/assets/logo.png"
               alt="Oxygen Health Logo"
               className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
