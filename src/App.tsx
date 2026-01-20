@@ -3,6 +3,7 @@ import Hero from "./components/sections/Hero";
 import Comparison from "./components/sections/Comparison";
 import Navbar from "./components/layout/Navbar";
 import Safety from "./components/sections/Safety";
+import Specs from "./components/sections/Specs";
 import PricingModal from "./components/ui/PricingModal";
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         </div>
         <div id="safety">
           <Safety />
+        </div>
+        <div id="specs">
+          <Specs />
         </div>
       </main>
       <PricingModal

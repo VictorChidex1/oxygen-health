@@ -793,6 +793,7 @@ Originally, we had `opacity-60`. It looked "cool" and "moody," but it hid the te
 ### 5. Summary
 
 We didn't just place an image; we **engineered** the crop. By using `object-top`, we ensured that no matter how the user resizes their screen, the "Authority Signal" (The Magazine Title) remains untouched.
+
 ## Chapter 13: The Shield (Building the Safety Section)
 
 In this session, we built the **Safety Section**, arguably the most critical part of the page for conversion. This section answers the client's biggest fear: _"Is this thing safe?"_
@@ -881,3 +882,140 @@ Originally, we had `opacity-60`. It looked "cool" and "moody," but it hid the te
 ### 5. Summary
 
 We didn't just place an image; we **engineered** the crop. By using `object-top`, we ensured that no matter how the user resizes their screen, the "Authority Signal" (The Magazine Title) remains untouched.
+
+---
+
+## Chapter 14: The Glow (Icon Visibility & Contrast)
+
+In this session, we fixed a subtle but critical UI bug: **The Invisible Icons**.
+
+### 1. The Problem: "Tone-on-Tone"
+
+We originally used `text-brand-blue` (Dark Navy) for the icons inside the Safety Cards.
+
+- **The Background**: Dark Navy / Black transparency.
+- **The Icon**: Dark Navy.
+- **The Result**: The icons disappeared into the background like a ninja in a dark room.
+
+### 2. The Solution: "Medical Ice"
+
+We switched to `text-blue-200`.
+
+- **Hex**: `#b1d0fc` (approx).
+- **Effect**: It acts as a "Hightlight" or "Glow".
+- **Design Theory**: In a dark interface ("Dark Mode"), your accent colors must range from **50 to 200** on the Tailwind scale to ensure they pop.
+
+---
+
+### 3. Key Terminologies
+
+| Term               | Analogy         | Description                                                                                                            |
+| :----------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| **Contrast Ratio** | The Volume Knob | How distinguishable an object is from its background. Low contrast = Mumbling. High contrast = Shouting.               |
+| **Tone-on-Tone**   | Camouflage      | Placing a dark object on a dark background (or light on light). Great for subtle texture, terrible for important data. |
+| **Blue-200**       | The Frost       | A very light, icy blue. It reads as "White" to the eye but carries the tint of the brand, keeping the design cohesive. |
+
+---
+
+### 4. Code Deep Dive
+
+Let's look at the change in `src/components/sections/Safety.tsx`.
+
+**BEFORE (The Mistake):**
+
+```tsx
+<feature.icon className="w-6 h-6 text-brand-blue" />
+```
+
+- `text-brand-blue` is `#0f2d63` (Very Dark).
+- On a dark card, this is invisible.
+
+**AFTER (The Fix):**
+
+```tsx
+<div className="... shadow-[0_0_15px_-3px_rgba(59,130,246,0.3)]">
+  <feature.icon className="w-6 h-6 text-blue-200" />
+</div>
+```
+
+- `text-blue-200`: This is the lighter hue. It glows.
+- `shadow-[...]`: We kept the glowing outer ring to enhance the "powered on" feel.
+
+### 5. Why Not Pure White?
+
+Why didn't we just use `text-white`?
+
+- **White** feels "Basic" or "Default".
+- **Blue-200** feels "Engineered" and "Medical" (like a laser or UV light).
+- It matches the **Oxygen** theme better than plain white.
+
+### 6. Summary
+
+We moved from "Camouflage" (Navy on Navy) to "Bioluminescence" (Ice on Navy). This guides the user's eye to the features immediately.
+## Chapter 14: The Glow (Icon Visibility & Contrast)
+
+In this session, we fixed a subtle but critical UI bug: **The Invisible Icons**.
+
+### 1. The Problem: "Tone-on-Tone"
+
+We originally used `text-brand-blue` (Dark Navy) for the icons inside the Safety Cards.
+
+- **The Background**: Dark Navy / Black transparency.
+- **The Icon**: Dark Navy.
+- **The Result**: The icons disappeared into the background like a ninja in a dark room.
+
+### 2. The Solution: "Medical Ice"
+
+We switched to `text-blue-200`.
+
+- **Hex**: `#b1d0fc` (approx).
+- **Effect**: It acts as a "Hightlight" or "Glow".
+- **Design Theory**: In a dark interface ("Dark Mode"), your accent colors must range from **50 to 200** on the Tailwind scale to ensure they pop.
+
+---
+
+### 3. Key Terminologies
+
+| Term               | Analogy         | Description                                                                                                            |
+| :----------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| **Contrast Ratio** | The Volume Knob | How distinguishable an object is from its background. Low contrast = Mumbling. High contrast = Shouting.               |
+| **Tone-on-Tone**   | Camouflage      | Placing a dark object on a dark background (or light on light). Great for subtle texture, terrible for important data. |
+| **Blue-200**       | The Frost       | A very light, icy blue. It reads as "White" to the eye but carries the tint of the brand, keeping the design cohesive. |
+
+---
+
+### 4. Code Deep Dive
+
+Let's look at the change in `src/components/sections/Safety.tsx`.
+
+**BEFORE (The Mistake):**
+
+```tsx
+<feature.icon className="w-6 h-6 text-brand-blue" />
+```
+
+- `text-brand-blue` is `#0f2d63` (Very Dark).
+- On a dark card, this is invisible.
+
+**AFTER (The Fix):**
+
+```tsx
+<div className="... shadow-[0_0_15px_-3px_rgba(59,130,246,0.3)]">
+  <feature.icon className="w-6 h-6 text-blue-200" />
+</div>
+```
+
+- `text-blue-200`: This is the lighter hue. It glows.
+- `shadow-[...]`: We kept the glowing outer ring to enhance the "powered on" feel.
+
+### 5. Why Not Pure White?
+
+Why didn't we just use `text-white`?
+
+- **White** feels "Basic" or "Default".
+- **Blue-200** feels "Engineered" and "Medical" (like a laser or UV light).
+- It matches the **Oxygen** theme better than plain white.
+
+### 6. Summary
+
+We moved from "Camouflage" (Navy on Navy) to "Bioluminescence" (Ice on Navy). This guides the user's eye to the features immediately.
