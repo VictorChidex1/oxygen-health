@@ -17,7 +17,7 @@ const features: ComparisonFeature[] = [
   {
     name: "Warranty",
     competitor: "1-2 Years",
-    us: "20-Year Warranty",
+    us: "3-Year System / 20-Year Window Warranty",
   },
   {
     name: "Certification",

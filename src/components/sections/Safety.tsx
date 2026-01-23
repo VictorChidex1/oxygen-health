@@ -23,7 +23,7 @@ const Safety: React.FC = () => {
       icon: ShieldCheck,
     },
     {
-      title: "20-Year Warranty",
+      title: "3-Year System / 20-Year Window Warranty",
       description:
         "Industry-leading protection. While others offer 1 year, we guarantee our craftsmanship for decades.",
       icon: Award,
