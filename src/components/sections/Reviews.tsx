@@ -35,7 +35,10 @@ const reviews: Review[] = [
 
 const Reviews: React.FC = () => {
   return (
-    <section className="bg-white py-24 relative overflow-hidden" id="reviews">
+    <section
+      className="bg-slate-50 py-24 relative overflow-hidden"
+      id="reviews"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -57,30 +60,44 @@ const Reviews: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+              className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden group"
             >
-              <div className="flex items-center gap-4 mb-4">
+              {/* Watermark Quote Icon */}
+              <div className="absolute top-4 right-4 opacity-[0.03] text-brand-blue transform group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                <svg
+                  width="80"
+                  height="80"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" />
+                </svg>
+              </div>
+
+              <div className="flex items-center gap-4 mb-4 relative z-10">
                 <div
-                  className={`w-10 h-10 rounded-full ${review.color} flex items-center justify-center text-white font-bold`}
+                  className={`w-12 h-12 rounded-full ${review.color} flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-blue/20 ring-4 ring-white`}
                 >
                   {review.initial}
                 </div>
                 <div>
-                  <h4 className="font-bold text-brand-navy">{review.name}</h4>
-                  <div className="flex items-center gap-2">
+                  <h4 className="font-bold text-brand-navy text-lg leading-tight">
+                    {review.name}
+                  </h4>
+                  <div className="flex items-center gap-2 mt-1">
                     <div className="flex text-yellow-400">
                       {[1, 2, 3, 4, 5].map((s) => (
-                        <Star key={s} className="w-3 h-3 fill-current" />
+                        <Star key={s} className="w-3.5 h-3.5 fill-current" />
                       ))}
                     </div>
-                    <span className="text-xs text-slate-400 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 text-green-500" />
+                    <span className="text-xs text-slate-400 flex items-center gap-1 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
                       Verified
                     </span>
                   </div>
                 </div>
               </div>
-              <p className="text-slate-600 leading-relaxed italic">
+              <p className="text-slate-600 leading-relaxed italic relative z-10 pl-2 border-l-2 border-brand-blue/10">
                 "{review.content}"
               </p>
             </motion.div>
@@ -93,10 +110,10 @@ const Reviews: React.FC = () => {
             href="https://www.google.com/search?q=Oxygen+Health+Systems+Chicago&oq=Oxygen+Health+Systems+Chicago&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzI1MmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x880e59ca23c6414b:0x3b920500e0f4afbb,1,,,,"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col sm:flex-row items-center gap-4 px-8 py-4 bg-slate-50 border border-slate-200 rounded-full hover:bg-white hover:border-brand-blue/30 hover:shadow-lg hover:shadow-brand-blue/10 transition-all duration-300 cursor-pointer"
+            className="group flex flex-col sm:flex-row items-center gap-4 px-8 py-4 bg-white border border-slate-200 rounded-full hover:border-brand-blue/30 hover:shadow-xl hover:shadow-brand-blue/5 transition-all duration-300 cursor-pointer"
           >
             {/* Google Logo (Simulated) */}
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1 shadow-sm border border-slate-100">
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform duration-300">
               <svg viewBox="0 0 24 24" className="w-5 h-5">
                 <path
                   fill="#4285F4"
@@ -118,7 +135,7 @@ const Reviews: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center sm:items-start">
-              <div className="flex text-yellow-500 gap-0.5 mb-1">
+              <div className="flex text-yellow-500 gap-0.5 mb-1 group-hover:gap-1 transition-all duration-300">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star key={s} className="w-4 h-4 fill-current" />
                 ))}
