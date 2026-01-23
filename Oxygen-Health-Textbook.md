@@ -952,70 +952,170 @@ Why didn't we just use `text-white`?
 ### 6. Summary
 
 We moved from "Camouflage" (Navy on Navy) to "Bioluminescence" (Ice on Navy). This guides the user's eye to the features immediately.
-## Chapter 14: The Glow (Icon Visibility & Contrast)
-
-In this session, we fixed a subtle but critical UI bug: **The Invisible Icons**.
-
-### 1. The Problem: "Tone-on-Tone"
-
-We originally used `text-brand-blue` (Dark Navy) for the icons inside the Safety Cards.
-
-- **The Background**: Dark Navy / Black transparency.
-- **The Icon**: Dark Navy.
-- **The Result**: The icons disappeared into the background like a ninja in a dark room.
-
-### 2. The Solution: "Medical Ice"
-
-We switched to `text-blue-200`.
-
-- **Hex**: `#b1d0fc` (approx).
-- **Effect**: It acts as a "Hightlight" or "Glow".
-- **Design Theory**: In a dark interface ("Dark Mode"), your accent colors must range from **50 to 200** on the Tailwind scale to ensure they pop.
 
 ---
 
-### 3. Key Terminologies
+## Chapter 15: The Blueprint (CSS Grids & Vignettes)
 
-| Term               | Analogy         | Description                                                                                                            |
-| :----------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------------- |
-| **Contrast Ratio** | The Volume Knob | How distinguishable an object is from its background. Low contrast = Mumbling. High contrast = Shouting.               |
-| **Tone-on-Tone**   | Camouflage      | Placing a dark object on a dark background (or light on light). Great for subtle texture, terrible for important data. |
-| **Blue-200**       | The Frost       | A very light, icy blue. It reads as "White" to the eye but carries the tint of the brand, keeping the design cohesive. |
+In this session, we transformed the **Specs Section** from a plain list into an **Engineering Blueprint**. We achieved this using pure CSS geometry, not an image file.
+
+### 1. What Did We Actually Do?
+
+1.  **The "Graph Paper"**: We used CSS Gradients to draw a 40px grid pattern.
+2.  **The "Vignette" (Fade Mask)**: We covered the edges of the grid with a gradient so it fades seamlessly into the background.
+3.  **The "Ghost Layer"**: We ensured the user can't "click" the background using `pointer-events-none`.
+
+---
+
+### 2. Key Terminologies
+
+| Term                | Analogy        | Description                                                                                                                              |
+| :------------------ | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| **Linear Gradient** | The Paintbrush | A CSS function that transitions colors. We hijacked it to draw sharp lines (1px) instead of smooth fades.                                |
+| **Vignette**        | The Fog        | A photography term for darkening the corners/edges. We used it to make the grid disappear at the top and bottom.                         |
+| **Pointer Events**  | The Ghost Mode | `pointer-events-none` tells the mouse: "Ignore me. Click right through me." Essential for background layers so they don't block buttons. |
+| **Inset-0**         | The Blanket    | `top: 0, right: 0, bottom: 0, left: 0`. It stretches the element to cover the entire parent container.                                   |
+
+---
+
+### 3. The Logic: Drawing with Math
+
+We didn't download a `grid.png`. We wrote code to draw it.
+
+**The Concept**:
+If you draw a vertical line every 40px, and a horizontal line every 40px, you get a grid.
+
+**The Code**:
+
+```css
+backgroundimage: "linear-gradient(#ffffff 1px, transparent 1px), 
+   linear-gradient(90deg, #ffffff 1px, transparent 1px)";
+```
+
+1.  **Layer 1 (Horizontal Lines)**: "Paint white for 1 pixel, then be transparent."
+2.  **Layer 2 (Vertical Lines)**: "Paint white for 1 pixel, then be transparent" (Rotated 90 degrees).
+3.  **Pattern**: Repeat this logic every `40px`.
 
 ---
 
 ### 4. Code Deep Dive
 
-Let's look at the change in `src/components/sections/Safety.tsx`.
-
-**BEFORE (The Mistake):**
+Let's dissect `src/components/sections/Specs.tsx`.
 
 ```tsx
-<feature.icon className="w-6 h-6 text-brand-blue" />
+{
+  /* 1. THE GRID LAYER */
+}
+<div
+  className="absolute inset-0 pointer-events-none opacity-[0.05]"
+  style={{
+    // The "Graph Paper" math
+    backgroundImage:
+      "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
+    backgroundSize: "40px 40px", // The size of each box
+  }}
+/>;
+
+{
+  /* 2. THE VIGNETTE LAYER (The Fade) */
+}
+<div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-transparent to-brand-navy pointer-events-none" />;
+
+{
+  /* 3. THE CONTENT LAYER */
+}
+<div className="relative z-10">...Content...</div>;
 ```
 
-- `text-brand-blue` is `#0f2d63` (Very Dark).
-- On a dark card, this is invisible.
+**Why the Vignette?**
+Without the vignette, the grid would cut off sharply at the top and bottom. It looks like a cheap cut job.
+By adding `bg-gradient-to-b from-brand-navy`, we paint over the top and bottom edges with the background color, making the grid effectively "fade out" into nothingness.
 
-**AFTER (The Fix):**
+**Why `z-10`?**
+Because the grid is `absolute`, it sits _on top_ of everything by default (or fights for position). By giving the content `z-10` (Level 10), we force the text to float _above_ the grid.
+
+### 5. Summary
+
+We created a "Technical" aesthetic without adding a single kilobyte of image data. It's infinite, sharp on all screens, and completely free in terms of performance.
+## Chapter 15: The Blueprint (CSS Grids & Vignettes)
+
+In this session, we transformed the **Specs Section** from a plain list into an **Engineering Blueprint**. We achieved this using pure CSS geometry, not an image file.
+
+### 1. What Did We Actually Do?
+
+1.  **The "Graph Paper"**: We used CSS Gradients to draw a 40px grid pattern.
+2.  **The "Vignette" (Fade Mask)**: We covered the edges of the grid with a gradient so it fades seamlessly into the background.
+3.  **The "Ghost Layer"**: We ensured the user can't "click" the background using `pointer-events-none`.
+
+---
+
+### 2. Key Terminologies
+
+| Term                | Analogy        | Description                                                                                                                              |
+| :------------------ | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| **Linear Gradient** | The Paintbrush | A CSS function that transitions colors. We hijacked it to draw sharp lines (1px) instead of smooth fades.                                |
+| **Vignette**        | The Fog        | A photography term for darkening the corners/edges. We used it to make the grid disappear at the top and bottom.                         |
+| **Pointer Events**  | The Ghost Mode | `pointer-events-none` tells the mouse: "Ignore me. Click right through me." Essential for background layers so they don't block buttons. |
+| **Inset-0**         | The Blanket    | `top: 0, right: 0, bottom: 0, left: 0`. It stretches the element to cover the entire parent container.                                   |
+
+---
+
+### 3. The Logic: Drawing with Math
+
+We didn't download a `grid.png`. We wrote code to draw it.
+
+**The Concept**:
+If you draw a vertical line every 40px, and a horizontal line every 40px, you get a grid.
+
+**The Code**:
+
+```css
+backgroundimage: "linear-gradient(#ffffff 1px, transparent 1px), 
+   linear-gradient(90deg, #ffffff 1px, transparent 1px)";
+```
+
+1.  **Layer 1 (Horizontal Lines)**: "Paint white for 1 pixel, then be transparent."
+2.  **Layer 2 (Vertical Lines)**: "Paint white for 1 pixel, then be transparent" (Rotated 90 degrees).
+3.  **Pattern**: Repeat this logic every `40px`.
+
+---
+
+### 4. Code Deep Dive
+
+Let's dissect `src/components/sections/Specs.tsx`.
 
 ```tsx
-<div className="... shadow-[0_0_15px_-3px_rgba(59,130,246,0.3)]">
-  <feature.icon className="w-6 h-6 text-blue-200" />
-</div>
+{
+  /* 1. THE GRID LAYER */
+}
+<div
+  className="absolute inset-0 pointer-events-none opacity-[0.05]"
+  style={{
+    // The "Graph Paper" math
+    backgroundImage:
+      "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
+    backgroundSize: "40px 40px", // The size of each box
+  }}
+/>;
+
+{
+  /* 2. THE VIGNETTE LAYER (The Fade) */
+}
+<div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-transparent to-brand-navy pointer-events-none" />;
+
+{
+  /* 3. THE CONTENT LAYER */
+}
+<div className="relative z-10">...Content...</div>;
 ```
 
-- `text-blue-200`: This is the lighter hue. It glows.
-- `shadow-[...]`: We kept the glowing outer ring to enhance the "powered on" feel.
+**Why the Vignette?**
+Without the vignette, the grid would cut off sharply at the top and bottom. It looks like a cheap cut job.
+By adding `bg-gradient-to-b from-brand-navy`, we paint over the top and bottom edges with the background color, making the grid effectively "fade out" into nothingness.
 
-### 5. Why Not Pure White?
+**Why `z-10`?**
+Because the grid is `absolute`, it sits _on top_ of everything by default (or fights for position). By giving the content `z-10` (Level 10), we force the text to float _above_ the grid.
 
-Why didn't we just use `text-white`?
+### 5. Summary
 
-- **White** feels "Basic" or "Default".
-- **Blue-200** feels "Engineered" and "Medical" (like a laser or UV light).
-- It matches the **Oxygen** theme better than plain white.
-
-### 6. Summary
-
-We moved from "Camouflage" (Navy on Navy) to "Bioluminescence" (Ice on Navy). This guides the user's eye to the features immediately.
+We created a "Technical" aesthetic without adding a single kilobyte of image data. It's infinite, sharp on all screens, and completely free in terms of performance.

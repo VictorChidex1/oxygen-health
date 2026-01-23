@@ -22,7 +22,7 @@ const features: ComparisonFeature[] = [
   {
     name: "Certification",
     competitor: "Standard CE only",
-    us: "ISO 13485 Medical Device",
+    us: "CE + 3x ISO Certified (Medical Grade)",
   },
   {
     name: "Internal Comfort",
@@ -75,7 +75,7 @@ const Comparison: React.FC = () => {
           >
             <h3 className="text-xl font-bold text-slate-500 mb-8 flex items-center gap-3">
               <XCircle className="w-6 h-6 text-slate-400" />
-              Generic / Competitors
+              Standard Market Models
             </h3>
 
             <div className="space-y-6">
