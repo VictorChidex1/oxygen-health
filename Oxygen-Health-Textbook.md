@@ -1037,85 +1037,130 @@ Because the grid is `absolute`, it sits _on top_ of everything by default (or fi
 ### 5. Summary
 
 We created a "Technical" aesthetic without adding a single kilobyte of image data. It's infinite, sharp on all screens, and completely free in terms of performance.
-## Chapter 15: The Blueprint (CSS Grids & Vignettes)
-
-In this session, we transformed the **Specs Section** from a plain list into an **Engineering Blueprint**. We achieved this using pure CSS geometry, not an image file.
-
-### 1. What Did We Actually Do?
-
-1.  **The "Graph Paper"**: We used CSS Gradients to draw a 40px grid pattern.
-2.  **The "Vignette" (Fade Mask)**: We covered the edges of the grid with a gradient so it fades seamlessly into the background.
-3.  **The "Ghost Layer"**: We ensured the user can't "click" the background using `pointer-events-none`.
 
 ---
 
-### 2. Key Terminologies
+## Chapter 16: The Pivot (Visual Rhythm & The Blueprint Design)
 
-| Term                | Analogy        | Description                                                                                                                              |
-| :------------------ | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| **Linear Gradient** | The Paintbrush | A CSS function that transitions colors. We hijacked it to draw sharp lines (1px) instead of smooth fades.                                |
-| **Vignette**        | The Fog        | A photography term for darkening the corners/edges. We used it to make the grid disappear at the top and bottom.                         |
-| **Pointer Events**  | The Ghost Mode | `pointer-events-none` tells the mouse: "Ignore me. Click right through me." Essential for background layers so they don't block buttons. |
-| **Inset-0**         | The Blanket    | `top: 0, right: 0, bottom: 0, left: 0`. It stretches the element to cover the entire parent container.                                   |
+In this session, we made a major architectural decision: **We broke the pattern.**
+We realized that having two Navy sections back-to-back (`Safety` -> `Specs`) created "Visual Fatigue." The user gets bored when the background color never changes.
 
----
+### 1. The Core Logic: "Visual Rhythm"
 
-### 3. The Logic: Drawing with Math
+Web design is like music.
 
-We didn't download a `grid.png`. We wrote code to draw it.
+- **Heavy Beat (Dark)**: Hero Section.
+- **Light Beat (Light)**: Comparison Section.
+- **Heavy Beat (Dark)**: Safety Section.
+- **Light Beat (Light)**: Specs Section (**New Change**).
 
-**The Concept**:
-If you draw a vertical line every 40px, and a horizontal line every 40px, you get a grid.
+By switching the Specs section to **White**, we re-engaged the user's brain. This A-B-A-B pattern keeps them scrolling because the environment constantly changes.
 
-**The Code**:
+### 2. The Implementation: "The Clinical Blueprint"
+
+We didn't just make it white. We made it look like **Graph Paper**.
+
+**The Grid Logic (Updated):**
+Instead of "White lines on Navy," we flipped it to "Slate lines on White."
 
 ```css
-backgroundimage: "linear-gradient(#ffffff 1px, transparent 1px), 
-   linear-gradient(90deg, #ffffff 1px, transparent 1px)";
+backgroundimage: "linear-gradient(#e2e8f0 1px, transparent 1px), 
+   linear-gradient(90deg, #e2e8f0 1px, transparent 1px)";
 ```
 
-1.  **Layer 1 (Horizontal Lines)**: "Paint white for 1 pixel, then be transparent."
-2.  **Layer 2 (Vertical Lines)**: "Paint white for 1 pixel, then be transparent" (Rotated 90 degrees).
-3.  **Pattern**: Repeat this logic every `40px`.
+- `#e2e8f0`: This is Tailwind's `slate-200`. It's a very subtle, technical gray.
+- **The Result**: It looks like an engineering schematic or an FDA filing document.
 
----
+### 3. Typography: "Ink on Paper"
 
-### 4. Code Deep Dive
-
-Let's dissect `src/components/sections/Specs.tsx`.
+When you use a dark background, you use white text (Light).
+When you use a white background, you must use **Navy** text (Dark).
 
 ```tsx
-{
-  /* 1. THE GRID LAYER */
-}
-<div
-  className="absolute inset-0 pointer-events-none opacity-[0.05]"
-  style={{
-    // The "Graph Paper" math
-    backgroundImage:
-      "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-    backgroundSize: "40px 40px", // The size of each box
-  }}
-/>;
-
-{
-  /* 2. THE VIGNETTE LAYER (The Fade) */
-}
-<div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-transparent to-brand-navy pointer-events-none" />;
-
-{
-  /* 3. THE CONTENT LAYER */
-}
-<div className="relative z-10">...Content...</div>;
+<span className="text-brand-navy font-bold text-lg text-right">
+  {spec.value}
+</span>
 ```
 
-**Why the Vignette?**
-Without the vignette, the grid would cut off sharply at the top and bottom. It looks like a cheap cut job.
-By adding `bg-gradient-to-b from-brand-navy`, we paint over the top and bottom edges with the background color, making the grid effectively "fade out" into nothingness.
+- **Why Navy?** Pure black (`#000000`) is too harsh. Navy (`#0f2d63`) feels "Corporate" and "Trusted."
+- **Why Bold?** Data points (like "1.5 ATA") need to stand out against the labels.
 
-**Why `z-10`?**
-Because the grid is `absolute`, it sits _on top_ of everything by default (or fights for position). By giving the content `z-10` (Level 10), we force the text to float _above_ the grid.
+### 4. The "Table Cleanliness"
+
+We used a technique called **Zebra Striping** to make the data readable.
+
+- **Row 1**: White (`bg-white`)
+- **Row 2**: Very Faint Grey (`bg-slate-50/50`)
+
+```tsx
+${index % 2 === 0 ? "bg-slate-50/50" : "bg-white"}
+```
+
+- `% 2 === 0`: This is the "Modulus" operator. It checks if the row number is Even or Odd.
+- **Result**: Every other row gets a subtle highlight, guiding the eye across the table without needing heavy borders.
 
 ### 5. Summary
 
-We created a "Technical" aesthetic without adding a single kilobyte of image data. It's infinite, sharp on all screens, and completely free in terms of performance.
+We solved "Visual Fatigue" by introducing "Contrast." The page now breathes. The Dark sections feel heavier and more serious, while the Light sections feel detailed and technical.
+## Chapter 16: The Pivot (Visual Rhythm & The Blueprint Design)
+
+In this session, we made a major architectural decision: **We broke the pattern.**
+We realized that having two Navy sections back-to-back (`Safety` -> `Specs`) created "Visual Fatigue." The user gets bored when the background color never changes.
+
+### 1. The Core Logic: "Visual Rhythm"
+
+Web design is like music.
+
+- **Heavy Beat (Dark)**: Hero Section.
+- **Light Beat (Light)**: Comparison Section.
+- **Heavy Beat (Dark)**: Safety Section.
+- **Light Beat (Light)**: Specs Section (**New Change**).
+
+By switching the Specs section to **White**, we re-engaged the user's brain. This A-B-A-B pattern keeps them scrolling because the environment constantly changes.
+
+### 2. The Implementation: "The Clinical Blueprint"
+
+We didn't just make it white. We made it look like **Graph Paper**.
+
+**The Grid Logic (Updated):**
+Instead of "White lines on Navy," we flipped it to "Slate lines on White."
+
+```css
+backgroundimage: "linear-gradient(#e2e8f0 1px, transparent 1px), 
+   linear-gradient(90deg, #e2e8f0 1px, transparent 1px)";
+```
+
+- `#e2e8f0`: This is Tailwind's `slate-200`. It's a very subtle, technical gray.
+- **The Result**: It looks like an engineering schematic or an FDA filing document.
+
+### 3. Typography: "Ink on Paper"
+
+When you use a dark background, you use white text (Light).
+When you use a white background, you must use **Navy** text (Dark).
+
+```tsx
+<span className="text-brand-navy font-bold text-lg text-right">
+  {spec.value}
+</span>
+```
+
+- **Why Navy?** Pure black (`#000000`) is too harsh. Navy (`#0f2d63`) feels "Corporate" and "Trusted."
+- **Why Bold?** Data points (like "1.5 ATA") need to stand out against the labels.
+
+### 4. The "Table Cleanliness"
+
+We used a technique called **Zebra Striping** to make the data readable.
+
+- **Row 1**: White (`bg-white`)
+- **Row 2**: Very Faint Grey (`bg-slate-50/50`)
+
+```tsx
+${index % 2 === 0 ? "bg-slate-50/50" : "bg-white"}
+```
+
+- `% 2 === 0`: This is the "Modulus" operator. It checks if the row number is Even or Odd.
+- **Result**: Every other row gets a subtle highlight, guiding the eye across the table without needing heavy borders.
+
+### 5. Summary
+
+We solved "Visual Fatigue" by introducing "Contrast." The page now breathes. The Dark sections feel heavier and more serious, while the Light sections feel detailed and technical.
