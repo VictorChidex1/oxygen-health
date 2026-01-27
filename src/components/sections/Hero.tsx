@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            {/* Primary Button: "Get Usage Guide" */}
+            {/* Primary Button: "Get Pricing" */}
             <motion.button
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ y: 1, scale: 0.98 }}
@@ -56,6 +56,11 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
             <motion.button
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ y: 1, scale: 0.98 }}
+              onClick={() =>
+                document
+                  .getElementById("specs")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:bg-white/5 transition-all active:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
             >
               View Specs

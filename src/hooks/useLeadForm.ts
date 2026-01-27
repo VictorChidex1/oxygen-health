@@ -1,13 +1,17 @@
 import { useState } from "react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../lib/firebase";
 
 interface LeadData {
   name: string;
   email: string;
-  phone: string;
-  interest: "buying" | "rental" | "clinic";
+  phone?: string; // Optional for generic use, but specific forms can enforce it
+  interest?: "buying" | "rental" | "clinic";
+  subject?: string;
+  message?: string;
 }
 
-export const useLeadForm = () => {
+export const useLeadForm = (collectionName: "leads" | "messages" = "leads") => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,16 +21,23 @@ export const useLeadForm = () => {
     setError(null);
 
     try {
-      // Mock Submission Logic
-      console.log("Submitting Lead Data:", data);
+      // Add a timestamp to the data
+      const payload = {
+        ...data,
+        createdAt: serverTimestamp(),
+      };
 
-      // Simulate Network Delay (2 seconds)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await addDoc(collection(db, collectionName), payload);
 
       setIsSuccess(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Submission Error:", err);
-      setError("Something went wrong. Please try again.");
+      // Friendly error message
+      if (err.code === "permission-denied") {
+        setError("Submission blocked. Please check your inputs.");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }

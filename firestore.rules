@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to validate string length
+    function isValidString(text, min, max) {
+      return text is string && text.size() >= min && text.size() <= max;
+    }
+
+    // Helper function to check required fields for Leads
+    function isValidLead() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['name', 'email', 'phone', 'interest', 'createdAt']) &&
+             isValidString(data.name, 2, 100) &&
+             isValidString(data.email, 5, 100) &&
+             isValidString(data.phone, 7, 20) &&
+             (data.interest in ['buying', 'rental', 'clinic']);
+    }
+
+    // Helper function to check required fields for Messages
+    function isValidMessage() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['name', 'email', 'subject', 'message', 'createdAt']) &&
+             isValidString(data.name, 2, 100) &&
+             isValidString(data.email, 5, 100) &&
+             isValidString(data.subject, 2, 100) &&
+             isValidString(data.message, 10, 2000); // Max 2000 chars for message
+    }
+
+    // Rules for 'leads' collection (Get Pricing Form)
+    match /leads/{leadId} {
+      allow create: if isValidLead();
+      allow read, update, delete: if false; // Admin only (via SDK)
+    }
+
+    // Rules for 'messages' collection (Contact Form)
+    match /messages/{messageId} {
+      allow create: if isValidMessage();
+      allow read, update, delete: if false; // Admin only (via SDK)
+    }
+  }
+}
