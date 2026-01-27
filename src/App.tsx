@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Safety from "./components/sections/Safety";
 import Specs from "./components/sections/Specs";
 import Reviews from "./components/sections/Reviews";
+import Faqs from "./components/sections/Faqs";
 import PricingModal from "./components/ui/PricingModal";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
         </div>
         <div id="reviews">
           <Reviews />
+        </div>
+        <div id="faqs">
+          <Faqs />
         </div>
       </main>
       <PricingModal

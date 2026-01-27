@@ -36,16 +36,22 @@ const reviews: Review[] = [
 const Reviews: React.FC = () => {
   return (
     <section
-      className="bg-slate-50 py-24 relative overflow-hidden"
+      className="bg-brand-navy py-24 relative overflow-hidden"
       id="reviews"
     >
-      <div className="container mx-auto px-4">
+      {/* Background Decorator - Subtle Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-7xl mx-auto pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-blue/20 blur-[128px] rounded-full opacity-50" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 blur-[128px] rounded-full opacity-30" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-brand-blue font-bold tracking-widest uppercase text-sm">
+          <span className="text-blue-200 font-bold tracking-widest uppercase text-sm">
             Success Stories
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mt-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
             Trusted by Clinics & Athletes
           </h2>
         </div>
@@ -59,14 +65,14 @@ const Reviews: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden group"
+              whileHover={{ y: -8 }}
+              className="bg-white rounded-2xl p-8 shadow-xl shadow-brand-navy/50 hover:shadow-2xl hover:shadow-brand-blue/20 transition-all duration-500 relative overflow-hidden group border border-white/10"
             >
               {/* Watermark Quote Icon */}
-              <div className="absolute top-4 right-4 opacity-[0.03] text-brand-blue transform group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+              <div className="absolute top-4 right-4 opacity-[0.04] text-brand-navy transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 pointer-events-none">
                 <svg
-                  width="80"
-                  height="80"
+                  width="100"
+                  height="100"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -74,9 +80,9 @@ const Reviews: React.FC = () => {
                 </svg>
               </div>
 
-              <div className="flex items-center gap-4 mb-4 relative z-10">
+              <div className="flex items-center gap-4 mb-6 relative z-10">
                 <div
-                  className={`w-12 h-12 rounded-full ${review.color} flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-blue/20 ring-4 ring-white`}
+                  className={`w-14 h-14 rounded-full ${review.color} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-navy/10 ring-4 ring-slate-50`}
                 >
                   {review.initial}
                 </div>
@@ -85,19 +91,19 @@ const Reviews: React.FC = () => {
                     {review.name}
                   </h4>
                   <div className="flex items-center gap-2 mt-1">
-                    <div className="flex text-yellow-400">
+                    <div className="flex text-amber-400">
                       {[1, 2, 3, 4, 5].map((s) => (
-                        <Star key={s} className="w-3.5 h-3.5 fill-current" />
+                        <Star key={s} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="text-xs text-slate-400 flex items-center gap-1 font-medium">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
+                    <span className="text-xs text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1 font-bold border border-emerald-100">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-500" />
                       Verified
                     </span>
                   </div>
                 </div>
               </div>
-              <p className="text-slate-600 leading-relaxed italic relative z-10 pl-2 border-l-2 border-brand-blue/10">
+              <p className="text-slate-600 leading-relaxed relative z-10 font-medium text-lg">
                 "{review.content}"
               </p>
             </motion.div>
@@ -110,11 +116,11 @@ const Reviews: React.FC = () => {
             href="https://www.google.com/search?q=Oxygen+Health+Systems+Chicago&oq=Oxygen+Health+Systems+Chicago&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzI1MmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8#lrd=0x880e59ca23c6414b:0x3b920500e0f4afbb,1,,,,"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col sm:flex-row items-center gap-4 px-8 py-4 bg-white border border-slate-200 rounded-full hover:border-brand-blue/30 hover:shadow-xl hover:shadow-brand-blue/5 transition-all duration-300 cursor-pointer"
+            className="group flex flex-col sm:flex-row items-center gap-4 px-8 py-4 bg-white rounded-full hover:scale-105 transition-all duration-300 cursor-pointer shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-10px_rgba(255,255,255,0.5)] border border-white/50"
           >
-            {/* Google Logo (Simulated) */}
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform duration-300">
-              <svg viewBox="0 0 24 24" className="w-5 h-5">
+            {/* Google Logo */}
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center p-1.5 shadow-sm border border-slate-100 group-hover:rotate-12 transition-transform duration-500">
+              <svg viewBox="0 0 24 24" className="w-full h-full">
                 <path
                   fill="#4285F4"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -134,19 +140,15 @@ const Reviews: React.FC = () => {
               </svg>
             </div>
 
-            <div className="flex flex-col items-center sm:items-start">
-              <div className="flex text-yellow-500 gap-0.5 mb-1 group-hover:gap-1 transition-all duration-300">
+            <div className="flex flex-col items-center sm:items-start text-brand-navy">
+              <div className="flex text-amber-500 gap-0.5 mb-1">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star key={s} className="w-4 h-4 fill-current" />
                 ))}
               </div>
-              <span className="text-slate-600 text-sm font-medium">
-                Rated{" "}
-                <span className="font-bold text-slate-800">4.9 Stars</span> by{" "}
-                <span className="font-bold text-slate-800">
-                  148+ Verified Customers
-                </span>{" "}
-                on Google
+              <span className="text-sm font-semibold">
+                Rated <span className="font-extrabold">4.9 Stars</span> by{" "}
+                <span className="font-extrabold">148+ Customers</span>
               </span>
             </div>
           </a>
