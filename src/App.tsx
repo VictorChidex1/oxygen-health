@@ -6,6 +6,7 @@ import Safety from "./components/sections/Safety";
 import Specs from "./components/sections/Specs";
 import Reviews from "./components/sections/Reviews";
 import Faqs from "./components/sections/Faqs";
+import Contact from "./components/sections/Contact";
 import PricingModal from "./components/ui/PricingModal";
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
         </div>
         <div id="faqs">
           <Faqs />
+        </div>
+        <div id="contact">
+          <Contact />
         </div>
       </main>
       <PricingModal

@@ -1180,6 +1180,7 @@ transition={{ delay: index * 0.1 }}
 ### 5. Summary
 
 Social Proof is not about showing _all_ reviews. It's about showing the _right_ reviews that answer specific customer doubts. We built a clean, curated section that does exactly that.
+
 ## Chapter 18: The "Editorial Polish" (Watermarks & Micro-Interactions)
 
 In this session, we upgraded the **Reviews Section** from "Standard SaaS" to "Premium Magazine."
@@ -1243,3 +1244,89 @@ className = "shadow-lg shadow-brand-blue/20 ring-4 ring-white";
 - 50% Opacity Shadows.
 - Off-White Backgrounds.
   These tiny details compound to create a feeling of expensive quality.
+
+## Chapter 19: The Vignette Reveal (Advanced Image Blending)
+
+In this session, we built the **FAQ Section**, but we faced a common design problem: _How do you put text on top of a busy image without ruining readability OR hiding the image?_
+
+We implemented the **"Vignette Reveal"** technique.
+
+### 1. What Did We Actually Do?
+
+1.  **The Problem**:
+
+    - If we made the image transparent (15%), it looked like a boring white wall. The "Herman Chamber" was invisible.
+    - If we made the image visible (100%), the text was unreadable. It was messy.
+
+2.  **The Fix (The Vignette Reveal)**:
+    - We bumped the image opacity to **40%** (so it pops).
+    - We used a **Radial Mask** that acts like a spotlight.
+    - **Center**: Solid White (where the text lives).
+    - **Edges**: Transparent (where the cool machinery lives).
+
+---
+
+### 2. Key Terminologies
+
+| Term                 | Analogy           | Description                                                                                                                                    |
+| :------------------- | :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Masking**          | The Stencil       | Using a gradient to "erase" parts of an image. We erased the center of the image so the text could breathe.                                    |
+| **Radial Gradient**  | The Spotlight     | A gradient that starts from the _center_ and moves out. `bg-[radial-gradient(...)]` implementation.                                            |
+| **Stagger Children** | The Domino Effect | We used `AnimatePresence` to make the FAQ answers slide down smoothly when opened.                                                             |
+| **Pointer Events**   | The Ghost Mode    | `pointer-events-none` ensures the background image doesn't block the user from clicking the questions. It makes the layer "clickable-through." |
+
+---
+
+### 3. The Logic: Center Stage vs. Backstage
+
+We treated the screen like a theatre stage.
+
+**Center Stage (Content)**:
+Must be clean, high-contrast, and distraction-free.
+
+**Backstage (Ambience)**:
+Must be rich, textured, and moody.
+
+**The Code Implementation:**
+
+```tsx
+<div className="absolute inset-0 pointer-events-none">
+  {/* Layer 1: The Image (Visible at 40%) */}
+  <div
+    className="absolute inset-0 opacity-40 bg-cover bg-center"
+    style={{ backgroundImage: "url('/assets/herman-chamber.jpg')" }}
+  />
+
+  {/* Layer 2: The Spotlight (The Scrub) */}
+  {/* Center = Solid White (Hides image) -> Edges = Transparent (Shows image) */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,white_0%,white_40%,transparent_100%)]" />
+
+  {/* Layer 3: The Softener */}
+  <div className="absolute inset-0 bg-white/50" />
+</div>
+```
+
+- **`white_0%` to `white_40%`**: This creates a "Safe Zone" in the middle of the screen where the background is pure white. This is where the text sits.
+- **`transparent_100%`**: By the time we get to the edges (where the Chamber tubes are), the white fades away, revealing the machine.
+
+### 4. The Interaction: The "Living" Accordion
+
+For the FAQs themselves, we didn't just want them to "snap" open. We used `Framer Motion` to calculate the height.
+
+```tsx
+<AnimatePresence>
+  {openIndex === index && (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }} // Start closed
+      animate={{ height: "auto", opacity: 1 }} // Grow to fit content
+      exit={{ height: 0, opacity: 0 }} // Shrink when closed
+      transition={{ duration: 0.3 }}
+    >
+      <div className="p-6">{faq.answer}</div>
+    </motion.div>
+  )}
+</AnimatePresence>
+```
+
+**Why `height: "auto"`?**
+We don't know if an answer is 1 line or 10 lines. `height: "auto"` tells Framer Motion: "Measure the content first, then animate to that exact size." This prevents jerky animations.
