@@ -129,7 +129,20 @@ const Faqs: React.FC = () => {
 
   return (
     <section className="bg-white py-24 relative overflow-hidden" id="faqs">
-      <div className="container mx-auto px-4 max-w-4xl">
+      {/* Background Image with Gradient Overlay */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-90 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/assets/herman-chamber.jpg')",
+          }}
+        />
+        {/* Vignette Mask: Solid white center for text, revealing image at edges */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,white_0%,white_40%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-white/50" />
+      </div>
+
+      <div className="container mx-auto px-4 max-w-4xl relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <span className="text-brand-blue font-bold tracking-widest uppercase text-sm">
@@ -145,7 +158,7 @@ const Faqs: React.FC = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-slate-200 rounded-2xl overflow-hidden bg-white hover:border-brand-blue/30 transition-colors duration-300"
+              className="border border-slate-200 rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm hover:border-brand-blue/30 transition-colors duration-300 shadow-sm"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -169,7 +182,7 @@ const Faqs: React.FC = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                    <div className="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100/50 pt-4">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -181,13 +194,16 @@ const Faqs: React.FC = () => {
 
         {/* CTA Footer */}
         <div className="mt-16 text-center">
+          <p className="text-slate-500 mb-4 font-medium">
+            Still have questions?
+          </p>
           <a
-            href="#"
-            className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-blue transition-colors group"
+            href="#contact"
+            className="inline-flex items-center gap-2 text-brand-navy font-bold hover:text-brand-blue transition-colors group"
           >
             <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span className="border-b-2 border-brand-navy/20 group-hover:border-brand-blue/50 pb-0.5">
-              Still have questions? Chat with a specialist
+              Chat with a specialist
             </span>
           </a>
         </div>
