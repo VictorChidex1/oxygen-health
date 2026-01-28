@@ -9,6 +9,7 @@ import Faqs from "./components/sections/Faqs";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import PricingModal from "./components/ui/PricingModal";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,6 +46,7 @@ function App() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
+      <ScrollToTop />
     </>
   );
 }
