@@ -7,6 +7,7 @@ import Specs from "./components/sections/Specs";
 import Reviews from "./components/sections/Reviews";
 import Faqs from "./components/sections/Faqs";
 import Contact from "./components/sections/Contact";
+import Footer from "./components/layout/Footer";
 import PricingModal from "./components/ui/PricingModal";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <div id="contact">
           <Contact />
         </div>
+        <Footer />
       </main>
       <PricingModal
         isOpen={isModalOpen}

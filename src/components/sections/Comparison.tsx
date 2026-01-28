@@ -25,7 +25,7 @@ const features: ComparisonFeature[] = [
     us: "CE + 3x ISO Certified (Medical Grade)",
   },
   {
-    name: "Internal Comfort",
+    name: "Floor Design",
     competitor: "Flat Floor Only",
     us: "Zero-Gravity Seating",
   },

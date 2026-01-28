@@ -25,7 +25,7 @@ service cloud.firestore {
              isValidString(data.name, 2, 100) &&
              isValidString(data.email, 5, 100) &&
              isValidString(data.subject, 2, 100) &&
-             isValidString(data.message, 10, 2000); // Max 2000 chars for message
+             isValidString(data.message, 10, 1000); // Max 1000 chars for message
     }
 
     // Rules for 'leads' collection (Get Pricing Form)

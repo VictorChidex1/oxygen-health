@@ -1330,3 +1330,138 @@ For the FAQs themselves, we didn't just want them to "snap" open. We used `Frame
 
 **Why `height: "auto"`?**
 We don't know if an answer is 1 line or 10 lines. `height: "auto"` tells Framer Motion: "Measure the content first, then animate to that exact size." This prevents jerky animations.
+
+## Chapter 20: The "Handshake" Protocol (Contact & Security)
+
+We didn't just build a form; we built a **Secure Data Pipeline**. This session focused on the "Contact Section," but more importantly, it focused on how we _protect_ and _manage_ the data coming from it.
+
+### 1. The Design: "The Anchor"
+
+We switched to a **Dark Navy Theme** (`bg-brand-navy`) for the Contact section.
+
+- **Why?** The user has just scrolled through a lot of white/light content (FAQs, Reviews). The dark section signals "The End" or "The Bottom." It acts as a visual anchor.
+- **Trust Signals**: We didn't just put a form there. We put the form _next to_ the phone number, email, and physical address. This says: "We are real. We are local. You can call us right now."
+
+### 2. The Logic: "The Hook" Pattern
+
+We separated the **UI (Contact.tsx)** from the **Logic (useLeadForm.ts)**.
+
+**Why?**
+
+- **Reusability**: We use the same submission logic for the "Get Pricing" modal AND the "Contact Us" form.
+- **Clean Code**: The UI component doesn't need to know _how_ Firestore works. It just calls `submitLead(data)`.
+
+**The Hook Code (`useLeadForm.ts`):**
+
+```typescript
+const submitLead = async (data: LeadData) => {
+  // 1. Add Timestamp automatically (Server Side)
+  const payload = { ...data, createdAt: serverTimestamp() };
+
+  // 2. Send to Firestore
+  await addDoc(collection(db, collectionName), payload);
+};
+```
+
+### 3. The Security: "The Bouncer" (Firestore Rules)
+
+This is the most critical part. We don't trust the frontend. Anyone can hack a frontend. We protect the database itself.
+
+**The Rules (`firestore.rules`):**
+
+```javascript
+match /messages/{messageId} {
+  allow create: if isValidMessage();
+  allow read, update, delete: if false;
+}
+```
+
+**Breakdown:**
+
+1.  **`allow create: if isValidMessage()`**: You can ONLY write data if you follow our strict rules (Name must be a string, Email must be valid, Message max 2000 chars).
+2.  **`allow read... if false`**: This is a "Write-Only" mailbox. Public users can drop a letter in the slot, but they CANNOT reach in and read other people's letters.
+
+### 4. The UX: "The Refresh Loop"
+
+We implemented a "Self-Cleaning" form.
+
+**The Problem**: After a user sends a message, the form stays filled. If they hit "Send" again, it spams us.
+**The Solution**: A `useEffect` timer.
+
+```typescript
+React.useEffect(() => {
+  if (isSuccess) {
+    // Wait 5 seconds, then wipe the memory
+    const timer = setTimeout(() => {
+      resetForm(); // Reset loading/success state
+      setFormData({ ... }); // Clear text inputs
+    }, 5000);
+    return () => clearTimeout(timer);
+  }
+}, [isSuccess]);
+```
+
+This creates a cycle:
+**Submit -> Success Message -> Wait 5s -> Fresh Form.**
+
+### 5. The Footer: "The Final Handshake"
+
+We added a **Trust Bar** immediately above the footer.
+
+- **30 Days Return**
+- **Same Day Dispatch**
+- **3 Years Warranty**
+
+**Why?**
+The footer is often where users look for "business logic" (policies, returns, contact info). By placing these three key value propositions right there, we answer their anxiety questions ("What if it breaks?", "When will I get it?", "Can I return it?") at the exact moment they are looking for that info.
+
+We used a **Blue Band** (`bg-brand-blue`) to separate this from the main content and the white footer, making it pop as a distinct "Promise" from the brand.
+
+## Chapter 21: The Information Architecture (Footer)
+
+The Footer is not just a "junk drawer" for links. It is the **Map of the Building**.
+We built a dual-layer footer to handle two distinct user needs: **Reassurance** and **Navigation**.
+
+### 1. The Strategy: "The Trust Sandwich"
+
+We sandwiched the main content between two trust layers.
+
+- **Top Layer (Trust Bar)**: Immediate objection handling (Returns, Dispatch, Warranty). This hits the "Rational Brain."
+- **Middle Layer (Navigation)**: The actual map (Quick Links, Contact).
+- **Bottom Layer (Legals)**: The "Fine Print" (Privacy, FDA). This creates a sense of corporate legitimacy.
+
+### 2. The Layout: The 4-Column Grid
+
+We used a classic CSS Grid pattern that adapts to screen size.
+
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+```
+
+**Terminology Breakdown:**
+
+- `grid-cols-1`: On Mobile, stack everything vertically. One column.
+- `md:grid-cols-2`: On Tablets, split into 2 rows of 2.
+- `lg:grid-cols-4`: On Laptops/Desktops, spread out into 4 equal columns.
+
+This is **Responsive Design** 101: content flows like water into the container size.
+
+### 3. The Details: "Clickable" Interactions
+
+A rookie mistake is making a phone number just text. We made them **Actions**.
+
+```tsx
+<a href="tel:+16308127865"> ... </a>
+<a href="mailto:sales@..."> ... </a>
+```
+
+- **`tel:` protocol**: triggers the dialer on a phone.
+- **`mailto:` protocol**: opens the default email app.
+- **`target="_blank"`**: For social links, we used this to open in a NEW tab. **Why?** Never force the user to leave your store just to check your Instagram. Keep your store open in the first tab.
+
+### 4. The Aesthetic: "Clean Clinical"
+
+We reverted to `bg-white` for the footer body.
+**Why?**
+The users just came from the "Dark Navy" Contact section. Switching back to white for the footer provides **Contrast**. It visually signals: _"You have passed the contact form. Here is the reference information."_
+It feels like the back cover of a book.
