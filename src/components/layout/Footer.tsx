@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="bg-white border-t border-slate-100 pt-16 pb-8">
+      <div className="bg-white border-t border-slate-100 pt-16 pb-32 md:pb-8">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             {/* Column 1: Brand Info */}

@@ -1504,3 +1504,23 @@ We didn't just leave the sections "done." We refined them:
 - **The Competitor Fade**: We reduced the opacity of the "Standard Market Models" column to `0.7`. This is **Visual Hierarchy**. We literally made the competition look "washed out" and irrelevant compared to our vibrant Navy/Blue card.
 
 **Lesson**: Design is not just about what you add. It's about what you emphasize.
+
+## Chapter 23: The Safe Zone (Mobile Ergonomics)
+
+We encountered a classic Mobile UI bug: **The Overlap**.
+Because we added a `fixed` Sticky CTA at the bottom of the screen, it physically covered the lowest part of our content—the Legal Links (Privacy, Terms, FDA).
+
+**The Fix: "The Phantom Padding"**
+We didn't move the button. We didn't move the links.
+We simply extended the _floor_ of the website.
+
+```tsx
+<div className="pt-16 pb-32 md:pb-8">
+```
+
+**The Logic:**
+
+- **`pb-32` (Mobile)**: We added **128px** of empty space to the bottom of the footer. This is the "Safe Zone." The Sticky CTA floats _over_ this empty space, leaving the actual content (Legal Links) fully visible above it.
+- **`md:pb-8` (Desktop)**: On desktop, the Sticky CTA is hidden, so we revert to standard **32px** padding.
+
+**Architectural Rule**: Whenever you place a `fixed` element on the screen, you MUST reserve `padding` in the main flow equal to that element's size. Otherwise, content will be buried.
