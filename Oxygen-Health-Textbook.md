@@ -1524,3 +1524,22 @@ We simply extended the _floor_ of the website.
 - **`md:pb-8` (Desktop)**: On desktop, the Sticky CTA is hidden, so we revert to standard **32px** padding.
 
 **Architectural Rule**: Whenever you place a `fixed` element on the screen, you MUST reserve `padding` in the main flow equal to that element's size. Otherwise, content will be buried.
+
+## Chapter 24: Vector Collision (UI Debugging)
+
+We solved a new problem: **The Floating Stack**.
+The "Scroll-to-Top" button was colliding with the "Sticky CTA" on mobile. Both wanted to occupy the bottom-right pixels of the screen.
+
+**The Fix:**
+
+1.  **Positioning**: We moved the button to `bottom-28` on mobile (stacking it _above_ the bar) and kept it at `bottom-8` on desktop.
+2.  **Contrast**: We switched from `bg-brand-blue` to `bg-white` with `text-brand-navy`.
+    - **Why?** Blue button on Blue bar = Invisible. White button on Blue bar = Pop.
+
+**The Code:**
+
+```tsx
+className = "fixed bottom-28 md:bottom-8 right-8 ... bg-white text-brand-navy";
+```
+
+This ensures that on mobile, the UI elements "stack" vertically instead of fighting for the same Z-index.
