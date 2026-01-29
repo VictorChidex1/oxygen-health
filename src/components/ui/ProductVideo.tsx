@@ -9,6 +9,7 @@ const ProductVideo: React.FC = () => {
         loop
         muted
         playsInline
+        poster="/assets/herman-chamber.jpg"
         className="w-full h-full object-cover"
       >
         <source src="/assets/chamber-loop.mp4" type="video/mp4" />

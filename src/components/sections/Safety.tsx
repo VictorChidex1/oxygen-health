@@ -56,7 +56,7 @@ const Safety: React.FC = () => {
             {/* Floating Badge */}
             <div className="absolute bottom-8 left-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                <CheckCircle2 className="w-6 h-6 text-green-400" />
+                <CheckCircle2 className="w-6 h-6 text-green-400 animate-pulse" />
               </div>
               <div>
                 <p className="text-white font-bold text-sm">

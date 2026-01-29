@@ -56,7 +56,7 @@ const Specs: React.FC = () => {
                 transition={{ delay: index * 0.1 }}
                 className={`
                   flex flex-col sm:flex-row sm:justify-between sm:items-center 
-                  p-6 border-b border-slate-100 last:border-0
+                  p-6 border-b border-slate-100 last:border-0 hover:bg-slate-100/80 transition-colors
                   ${index % 2 === 0 ? "bg-slate-50/50" : "bg-white"}
                 `}
               >

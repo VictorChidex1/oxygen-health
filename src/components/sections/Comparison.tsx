@@ -71,7 +71,7 @@ const Comparison: React.FC = () => {
             whileHover={{ backgroundColor: "rgba(241, 245, 249, 1)" }} // bg-slate-100
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-slate-50 border border-slate-200 rounded-2xl p-8 relative overflow-hidden"
+            className="bg-slate-50 border border-slate-200 rounded-2xl p-8 relative overflow-hidden opacity-70"
           >
             <h3 className="text-xl font-bold text-slate-500 mb-8 flex items-center gap-3">
               <XCircle className="w-6 h-6 text-slate-400" />

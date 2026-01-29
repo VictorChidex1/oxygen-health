@@ -1465,3 +1465,42 @@ We reverted to `bg-white` for the footer body.
 **Why?**
 The users just came from the "Dark Navy" Contact section. Switching back to white for the footer provides **Contrast**. It visually signals: _"You have passed the contact form. Here is the reference information."_
 It feels like the back cover of a book.
+
+## Chapter 22: The Persistent Salesperson (Sticky CTA & Polish)
+
+We reached the final 5% of the build. This is where "Good" becomes "Premium."
+We implemented a **Mobile-Sticky CTA** and applied a **Clinical Polish** to the UI.
+
+### 1. The Logic: "The Ghost Button" (Sticky CTA)
+
+**The Problem**: On mobile, the "Get Pricing" button is in the Hero. Once the user scrolls past it, they have no way to buy without scrolling all the way back up. Friction kills sales.
+**The Solution**: A button that watches you.
+
+We implemented a "Scroll Spy" mechanism:
+
+1.  **The Trigger**: We track `window.scrollY`.
+2.  **The Threshold**: If the user scrolls past **600px** (the height of the Hero), the variable `isVisible` flips to `true`.
+3.  **The Animation**: We used `AnimatePresence` to make the button slide up from the bottom (`y: 100` -> `y: 0`).
+
+**The Code Pattern:**
+
+```tsx
+useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 600) setIsVisible(true);
+    else setIsVisible(false);
+  };
+  window.addEventListener("scroll", handleScroll);
+}, []);
+```
+
+### 2. The Polish: "Clinical Precision"
+
+We didn't just leave the sections "done." We refined them:
+
+- **Video Fallback**: Added a `poster` image. If the video fails (low battery mode), the user sees a high-res image instead of a black box. **Always have a Plan B.**
+- **Tactile Specs**: Added `hover:bg-slate-100` to the rows. Users trace data with their mouse/finger. We gave them visual feedback.
+- **Pulsing Safety**: We added `animate-pulse` to the safety badges. It mimics a heartbeat or a "system active" light.
+- **The Competitor Fade**: We reduced the opacity of the "Standard Market Models" column to `0.7`. This is **Visual Hierarchy**. We literally made the competition look "washed out" and irrelevant compared to our vibrant Navy/Blue card.
+
+**Lesson**: Design is not just about what you add. It's about what you emphasize.
