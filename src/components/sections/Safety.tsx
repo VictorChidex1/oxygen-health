@@ -38,7 +38,7 @@ const Safety: React.FC = () => {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
-          className="absolute inset-0 opacity-[0.05] bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 opacity-20 mix-blend-soft-light bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/assets/safety-background.jpg')",
           }}
