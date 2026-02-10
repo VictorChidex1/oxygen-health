@@ -25,9 +25,9 @@ const features: ComparisonFeature[] = [
     us: "CE + 3x ISO Certified (Medical Grade)",
   },
   {
-    name: "Floor Design",
-    competitor: "Flat Floor Only",
-    us: "Zero-Gravity Seating",
+    name: "Design & Ergonomics",
+    competitor: "Tubular Design (Hard Entry/Exit)",
+    us: "Zero-Gravity Luxury Chair",
   },
   {
     name: "Manufacturing",
@@ -54,7 +54,7 @@ const Comparison: React.FC = () => {
             Why Choose Us
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-brand-navy">
-            The Protocol vs. The Rest
+            Why Choose Oxygen Health Systems
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">
             See why clinical professionals trust Oxygen Health Systems over

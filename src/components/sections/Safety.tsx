@@ -31,7 +31,22 @@ const Safety: React.FC = () => {
   ];
 
   return (
-    <section className="bg-brand-navy py-24 relative overflow-hidden">
+    <section
+      className="bg-brand-navy py-24 relative overflow-hidden"
+      id="safety"
+    >
+      {/* Background Image with Gradient Overlay */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-30 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/assets/safety-background.jpg')",
+          }}
+        />
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-brand-navy/80 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-brand-navy" />
+      </div>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column: Visual/Image */}
