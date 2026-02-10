@@ -36,27 +36,20 @@ const Safety: React.FC = () => {
       id="safety"
     >
       {/* Background Image with Gradient Overlay */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <div
-          className="absolute inset-0 opacity-30 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 opacity-[0.05] bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/assets/safety-background.jpg')",
           }}
         />
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-brand-navy/80 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-brand-navy" />
+        {/* Dark Overlay for Text Readability - reinforced */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy/95 to-brand-navy" />
       </div>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column: Visual/Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group"
-          >
+          <motion.div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
             <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent z-10" />
 
             {/* Placeholder for the Chamber Image */}
@@ -84,12 +77,7 @@ const Safety: React.FC = () => {
 
           {/* Right Column: Content */}
           <div className="space-y-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
+            <motion.div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
                 Engineered for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
@@ -107,10 +95,6 @@ const Safety: React.FC = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                   className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
                 >

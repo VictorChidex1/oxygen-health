@@ -1543,3 +1543,22 @@ className = "fixed bottom-28 md:bottom-8 right-8 ... bg-white text-brand-navy";
 ```
 
 This ensures that on mobile, the UI elements "stack" vertically instead of fighting for the same Z-index.
+
+## Chapter 25: The Phantom Background
+
+We added a background image to the Safety section, but it clashed with the text. The user struggled to read the "Features".
+
+**The Fix: "The 3% Rule"**
+We applied an aggressive opacity reduction. We didn't just lower it; we almost deleted it.
+
+```tsx
+<div className="absolute inset-0 opacity-[0.05] bg-cover ..." />
+```
+
+**Why 5%?**
+
+- **50%**: Too loud. Text is unreadable.
+- **20%**: Still distracting.
+- **5%**: **Perfect**. The brain registers "texture" and "depth" without registering "image." It feels premium, not busy.
+
+We also reinforced the **Gradient Overlay** (`bg-gradient-to-b`) to ensure the top and bottom edges fade perfectly into the section's solid background color.
