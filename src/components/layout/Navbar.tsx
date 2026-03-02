@@ -24,6 +24,10 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
     { name: "Safety", href: "#safety" },
     { name: "Comparison", href: "#comparison" },
     { name: "Specs", href: "#specs" },
+    { name: "Reviews", href: "#reviews" },
+    { name: "Certifications", href: "#certifications" },
+    { name: "FAQs", href: "#faqs" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -37,21 +41,21 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="#" className="flex items-center gap-3 group z-50">
             <img
               src="/assets/logo.png"
               alt="Oxygen Health Logo"
-              className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+              className="h-10 md:h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-colors uppercase tracking-wider ${
+                className={`text-sm font-medium transition-colors uppercase tracking-wider whitespace-nowrap ${
                   isScrolled
                     ? "text-slate-300 hover:text-white"
                     : "text-brand-navy hover:text-brand-blue"
@@ -62,25 +66,29 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
             ))}
           </div>
 
-          {/* Desktop Right (Batphone + CTA) */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Right Action Area */}
+          <div className="flex items-center gap-4 md:gap-6 z-50">
+            {/* Desktop Only Batphone */}
             <a
               href="tel:+16308127865"
-              className={`flex items-center gap-2 transition-colors group ${
+              className={`hidden lg:flex items-center gap-2 transition-colors group ${
                 isScrolled
                   ? "text-slate-300 hover:text-green-400"
                   : "text-brand-navy hover:text-green-600"
               }`}
             >
               <Phone className="w-4 h-4 group-hover:animate-pulse" />
-              <span className="text-sm font-medium">+1 (630) 812-7865</span>
+              <span className="text-sm font-medium whitespace-nowrap">
+                +1 (630) 812-7865
+              </span>
             </a>
 
+            {/* Persistent CTA */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onOpen}
-              className={`px-5 py-2.5 rounded-full font-bold text-sm shadow-[0_0_20px_-5px_rgba(0,0,0,0.1)] hover:shadow-[0_0_25px_-5px_rgba(0,0,0,0.2)] transition-all ${
+              className={`px-4 py-2 md:px-5 md:py-2.5 rounded-full font-bold text-xs md:text-sm shadow-[0_0_20px_-5px_rgba(0,0,0,0.1)] hover:shadow-[0_0_25px_-5px_rgba(0,0,0,0.2)] transition-all whitespace-nowrap ${
                 isScrolled
                   ? "bg-white text-brand-navy shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
                   : "bg-brand-navy text-white hover:bg-brand-blue"
@@ -88,17 +96,21 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
             >
               Get Pricing
             </motion.button>
-          </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className={`md:hidden ${
-              isScrolled ? "text-white" : "text-brand-navy"
-            }`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </button>
+            {/* Mobile Menu Toggle */}
+            <button
+              className={`lg:hidden p-2 -mr-2 ${
+                isScrolled ? "text-white" : "text-brand-navy"
+              }`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -132,15 +144,6 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
                   <Phone className="w-5 h-5 text-green-400" />
                   +1 (630) 812-7865
                 </a>
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onOpen();
-                  }}
-                  className="w-full bg-white text-brand-navy py-4 rounded-xl font-bold text-lg shadow-lg"
-                >
-                  Get Pricing
-                </button>
               </div>
             </div>
           </motion.div>
