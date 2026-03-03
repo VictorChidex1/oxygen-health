@@ -11,6 +11,7 @@ import Reviews from "./components/sections/Reviews";
 import FeaturedProducts from "./components/sections/FeaturedProducts";
 import ImagesAndGallery from "./components/sections/ImagesAndGallery";
 import VideoHighlights from "./components/sections/VideoHighlights";
+import Blog from "./components/sections/Blog";
 import Faqs from "./components/sections/Faqs";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
@@ -60,6 +61,9 @@ function App() {
         </div>
         <div id="videos">
           <VideoHighlights />
+        </div>
+        <div id="blog">
+          <Blog />
         </div>
         <div id="faqs">
           <Faqs />

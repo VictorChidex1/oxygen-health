@@ -10,17 +10,17 @@ interface VideoData {
 const videos: VideoData[] = [
   {
     id: "1",
-    youtubeId: "I4ZEwxAv9HU", // GHS Video 1
+    youtubeId: "I4ZEwxAv9HU",
     title: "GHS Video 1",
   },
   {
     id: "2",
-    youtubeId: "I4ZEwxAv9HU", // GHS Video 2 (Same ID provided in prompt)
+    youtubeId: "I4ZEwxAv9HU",
     title: "GHS Video 2",
   },
   {
     id: "3",
-    youtubeId: "5JTpcRSbB00", // GHS Video 3
+    youtubeId: "5JTpcRSbB00",
     title: "GHS Video 3",
   },
 ];

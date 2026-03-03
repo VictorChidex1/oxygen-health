@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                 <div>
                   <h4 className="text-white font-bold text-lg">Visit Us</h4>
                   <p className="text-blue-100 mt-1">
-                    Naperville, IL 60540
+                    6810 Route 53, Woodridge, IL 60517
                     <br />
                     United States
                   </p>
@@ -191,6 +191,11 @@ const Contact: React.FC = () => {
               </div>
             ) : (
               <>
+                <img
+                  src="/assets/contact-image.jpg"
+                  alt="Expert Guidance for Chamber Selection"
+                  className="w-full h-auto rounded-xl shadow-sm mb-8"
+                />
                 {/* Form Header */}
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-slate-900">
@@ -265,7 +270,7 @@ const Contact: React.FC = () => {
                       htmlFor="subject"
                       className="text-sm font-semibold text-slate-700"
                     >
-                      Subject
+                      Is this for home use or business use?
                     </label>
                     <div className="relative">
                       <select
@@ -275,12 +280,57 @@ const Contact: React.FC = () => {
                         className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 outline-none transition-all appearance-none text-slate-900 bg-white"
                       >
                         <option value="" disabled>
-                          Select a topic...
+                          Tell Us About Your Needs
                         </option>
-                        <option value="sales">Sales Inquiry</option>
-                        <option value="financing">Financing Options</option>
-                        <option value="support">Technical Support</option>
-                        <option value="other">Other</option>
+                        <option value="Personal / Home Use">
+                          Personal / Home Use
+                        </option>
+                        <option value="Business / Clinic Use">
+                          Business / Clinic Use
+                        </option>
+                        <option value="Not Sure Yet">Not Sure Yet</option>
+                      </select>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="subject"
+                      className="text-sm font-semibold text-slate-700"
+                    >
+                      Which type of chamber are you interested in?
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10 outline-none transition-all appearance-none text-slate-900 bg-white"
+                      >
+                        <option value="" disabled>
+                          Tell Us About Your Needs
+                        </option>
+                        <option value="Soft Chamber">Soft Chamber</option>
+                        <option value="Hard Chamber">Hard Chamber</option>
+                        <option value="Multiplace chamber">
+                          Multiplace chamber
+                        </option>
+                        <option value="Not Sure Yet">Not Sure Yet</option>
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
                         <svg
