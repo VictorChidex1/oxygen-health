@@ -14,7 +14,6 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 import PricingModal from "./components/ui/PricingModal";
 import ScrollToTop from "./components/ui/ScrollToTop";
-import MobileStickyCTA from "./components/ui/MobileStickyCTA";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,7 +66,6 @@ function App() {
         onClose={() => setIsModalOpen(false)}
       />
       <ScrollToTop />
-      <MobileStickyCTA onOpen={() => setIsModalOpen(true)} />
     </>
   );
 }

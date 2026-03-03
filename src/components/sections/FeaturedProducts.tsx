@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Product {
@@ -75,6 +75,14 @@ export default function FeaturedProducts() {
   const next = () => setCurrentPage((p) => (p + 1) % totalPages);
   const prev = () => setCurrentPage((p) => (p - 1 + totalPages) % totalPages);
 
+  // Auto-sliding interval (Slide left/right ping-pong style via % totalPages loop)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+    }, 5000); // 5 seconds interval
+    return () => clearInterval(timer);
+  }, [totalPages]);
+
   const visibleProducts = products.slice(
     currentPage * productsPerPage,
     currentPage * productsPerPage + productsPerPage
@@ -82,17 +90,20 @@ export default function FeaturedProducts() {
 
   return (
     <section
-      className="bg-white py-20 lg:py-28 font-sans border-t border-slate-100"
+      className="bg-brand-navy py-20 lg:py-28 font-sans relative overflow-hidden"
       id="products"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background Decorator overlay */}
+      <div className="absolute top-0 right-0 w-full h-[500px] bg-brand-blue/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header and Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-brand-navy tracking-tight mb-4 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
               Featured Products
             </h2>
-            <p className="text-slate-600 text-lg font-medium">
+            <p className="text-slate-300 text-lg font-medium tracking-wide">
               Click View Details to open the product page
             </p>
           </div>
@@ -100,14 +111,14 @@ export default function FeaturedProducts() {
           <div className="flex items-center gap-3 shrink-0 self-end">
             <button
               onClick={prev}
-              className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-navy hover:border-brand-navy hover:bg-slate-50 transition-all shadow-sm group"
+              className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white hover:bg-white/10 transition-all shadow-sm group backdrop-blur-sm"
               aria-label="Previous products"
             >
               <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
             </button>
             <button
               onClick={next}
-              className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-navy hover:border-brand-navy hover:bg-slate-50 transition-all shadow-sm group"
+              className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white hover:bg-white/10 transition-all shadow-sm group backdrop-blur-sm"
               aria-label="Next products"
             >
               <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
@@ -116,14 +127,14 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-500">
           {visibleProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-[#121b2d] rounded-[2rem] overflow-hidden shadow-2xl border border-slate-800 flex flex-col h-full group transition-all duration-300 hover:shadow-brand-blue/10 hover:-translate-y-1"
+              className="bg-[#121b2d] rounded-[2rem] overflow-hidden shadow-xl border border-white/10 flex flex-col h-full group transition-all duration-300 hover:shadow-2xl hover:shadow-brand-blue/20 hover:-translate-y-2 hover:border-brand-blue/40"
             >
               {/* Image Container */}
-              <div className="bg-white h-[280px] w-full p-8 flex items-center justify-center relative rounded-t-[2rem] border-b border-white/5">
+              <div className="bg-white h-[280px] w-full p-8 flex items-center justify-center relative rounded-t-[2rem] border-b border-white/10 text-center">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -132,10 +143,10 @@ export default function FeaturedProducts() {
               </div>
 
               {/* Content Area */}
-              <div className="p-8 flex flex-col flex-grow relative z-10">
+              <div className="p-8 flex flex-col flex-grow relative z-10 bg-[#0B1221]">
                 {/* Badges row */}
                 <div className="flex items-center justify-between mb-5">
-                  <div className="bg-[#1e2a40] border border-[#2b3a55] text-blue-300 text-[11px] md:text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-inner">
+                  <div className="bg-brand-blue/20 border border-brand-blue/30 text-blue-300 text-[11px] md:text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-inner backdrop-blur-sm">
                     <Star className="w-3.5 h-3.5 fill-blue-400 text-blue-400" />
                     {product.badge}
                   </div>
@@ -145,18 +156,18 @@ export default function FeaturedProducts() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-6 min-h-[56px] line-clamp-3 pr-2">
+                <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-6 min-h-[56px] line-clamp-3 pr-2 group-hover:text-amber-50 relative z-10 transition-colors duration-300">
                   {product.name}
                 </h3>
 
                 {/* Features List */}
-                <ul className="mb-8 space-y-2.5 flex-grow">
+                <ul className="mb-8 space-y-2.5 flex-grow relative z-10">
                   {product.features.map((feature, idx) => (
                     <li
                       key={idx}
                       className="flex items-center gap-3 text-slate-300 text-sm md:text-[15px]"
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-500 opacity-60 shrink-0"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-blue opacity-80 shrink-0 shadow-[0_0_8px_rgba(37,99,235,0.8)]"></div>
                       {feature}
                     </li>
                   ))}
@@ -167,7 +178,7 @@ export default function FeaturedProducts() {
                   href={product.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+                  className="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] relative z-10"
                 >
                   View Details
                   <ExternalLink className="w-4 h-4" />
@@ -177,14 +188,18 @@ export default function FeaturedProducts() {
           ))}
         </div>
 
-        {/* Pagination Dots (Optional, for visual completeness) */}
-        <div className="flex justify-center items-center gap-2 mt-10">
+        {/* Pagination Dots */}
+        <div className="flex justify-center items-center gap-2 mt-12">
           {[...Array(totalPages)].map((_, idx) => (
-            <div
+            <button
               key={idx}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                currentPage === idx ? "w-8 bg-brand-navy" : "w-2 bg-slate-200"
+              onClick={() => setCurrentPage(idx)}
+              className={`h-2 rounded-full transition-all duration-500 focus:outline-none ${
+                currentPage === idx
+                  ? "w-10 bg-brand-blue shadow-[0_0_12px_rgba(37,99,235,0.5)]"
+                  : "w-3 bg-white/20 hover:bg-white/40"
               }`}
+              aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
         </div>

@@ -37,7 +37,7 @@ const ScrollToTop: React.FC = () => {
           exit={{ opacity: 0, scale: 0.5 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-28 md:bottom-8 right-8 z-50 p-4 bg-white text-brand-navy rounded-full shadow-xl hover:bg-slate-50 transition-colors focus:outline-none focus:ring-4 focus:ring-blue-200 border border-slate-100"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 p-3.5 bg-white text-brand-navy rounded-full shadow-xl hover:bg-slate-50 transition-colors focus:outline-none focus:ring-4 focus:ring-blue-200 border border-slate-100"
           aria-label="Scroll to top"
         >
           <ChevronUp className="w-6 h-6" />
