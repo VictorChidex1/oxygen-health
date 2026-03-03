@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hero from "./components/sections/Hero";
 import Trust from "./components/sections/Trust";
 import WhyItWorks from "./components/sections/WhyItWorks";
+import Certifications from "./components/sections/Certifications";
 import Comparison from "./components/sections/Comparison";
 import Navbar from "./components/layout/Navbar";
 import Safety from "./components/sections/Safety";
@@ -31,6 +32,10 @@ function App() {
 
         <div id="why-it-works">
           <WhyItWorks />
+        </div>
+
+        <div id="certifications">
+          <Certifications />
         </div>
 
         <div id="comparison">
