@@ -51,7 +51,7 @@ function App() {
           <Reviews />
         </div>
         <div id="products">
-          <FeaturedProducts />
+          <FeaturedProducts onOpen={() => setIsModalOpen(true)} />
         </div>
         <div id="faqs">
           <Faqs />

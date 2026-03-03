@@ -67,7 +67,7 @@ const products: Product[] = [
   },
 ];
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ onOpen }: { onOpen?: () => void }) {
   const [currentPage, setCurrentPage] = useState(0);
   const productsPerPage = 3;
   const totalPages = Math.ceil(products.length / productsPerPage);
@@ -134,7 +134,7 @@ export default function FeaturedProducts() {
               className="bg-[#121b2d] rounded-[2rem] overflow-hidden shadow-xl border border-white/10 flex flex-col h-full group transition-all duration-300 hover:shadow-2xl hover:shadow-brand-blue/20 hover:-translate-y-2 hover:border-brand-blue/40"
             >
               {/* Image Container */}
-              <div className="bg-white h-[280px] w-full p-8 flex items-center justify-center relative rounded-t-[2rem] border-b border-white/10 text-center">
+              <div className="bg-white h-[220px] w-full p-6 flex items-center justify-center relative rounded-t-[2rem] border-b border-white/10 text-center">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -143,20 +143,23 @@ export default function FeaturedProducts() {
               </div>
 
               {/* Content Area */}
-              <div className="p-8 flex flex-col flex-grow relative z-10 bg-[#0B1221]">
+              <div className="p-6 flex flex-col flex-grow relative z-10 bg-[#0B1221]">
                 {/* Badges row */}
-                <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center justify-between mb-4">
                   <div className="bg-brand-blue/20 border border-brand-blue/30 text-blue-300 text-[11px] md:text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-inner backdrop-blur-sm">
                     <Star className="w-3.5 h-3.5 fill-blue-400 text-blue-400" />
                     {product.badge}
                   </div>
-                  <button className="text-slate-400 text-sm font-medium hover:text-white transition-colors">
+                  <button
+                    onClick={onOpen}
+                    className="text-slate-400 text-sm font-medium hover:text-white transition-colors focus:outline-none"
+                  >
                     Request Quote
                   </button>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white font-bold text-lg md:text-xl leading-snug mb-6 min-h-[56px] line-clamp-3 pr-2 group-hover:text-amber-50 relative z-10 transition-colors duration-300">
+                <h3 className="text-white font-bold text-lg leading-snug mb-5 min-h-[56px] line-clamp-3 pr-2 group-hover:text-amber-50 relative z-10 transition-colors duration-300">
                   {product.name}
                 </h3>
 
@@ -178,7 +181,7 @@ export default function FeaturedProducts() {
                   href={product.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] relative z-10"
+                  className="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] relative z-10"
                 >
                   View Details
                   <ExternalLink className="w-4 h-4" />
