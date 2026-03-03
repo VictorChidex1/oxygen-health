@@ -90,7 +90,7 @@ export default function FeaturedProducts({ onOpen }: { onOpen?: () => void }) {
 
   return (
     <section
-      className="bg-brand-navy py-20 lg:py-28 font-sans relative overflow-hidden"
+      className="bg-slate-50 py-20 lg:py-28 font-sans relative overflow-hidden"
       id="products"
     >
       {/* Background Decorator overlay */}
@@ -100,10 +100,10 @@ export default function FeaturedProducts({ onOpen }: { onOpen?: () => void }) {
         {/* Header and Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-brand-navy tracking-tight mb-4 leading-tight">
               Featured Products
             </h2>
-            <p className="text-slate-300 text-lg font-medium tracking-wide">
+            <p className="text-slate-600 text-lg font-medium tracking-wide">
               Click View Details to open the product page
             </p>
           </div>
@@ -111,14 +111,14 @@ export default function FeaturedProducts({ onOpen }: { onOpen?: () => void }) {
           <div className="flex items-center gap-3 shrink-0 self-end">
             <button
               onClick={prev}
-              className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white hover:bg-white/10 transition-all shadow-sm group backdrop-blur-sm"
+              className="w-12 h-12 rounded-full border border-slate-300 flex items-center justify-center text-slate-400 hover:text-brand-navy hover:border-brand-navy hover:bg-slate-100 transition-all shadow-sm group backdrop-blur-sm"
               aria-label="Previous products"
             >
               <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
             </button>
             <button
               onClick={next}
-              className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white hover:bg-white/10 transition-all shadow-sm group backdrop-blur-sm"
+              className="w-12 h-12 rounded-full border border-slate-300 flex items-center justify-center text-slate-400 hover:text-brand-navy hover:border-brand-navy hover:bg-slate-100 transition-all shadow-sm group backdrop-blur-sm"
               aria-label="Next products"
             >
               <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
@@ -200,7 +200,7 @@ export default function FeaturedProducts({ onOpen }: { onOpen?: () => void }) {
               className={`h-2 rounded-full transition-all duration-500 focus:outline-none ${
                 currentPage === idx
                   ? "w-10 bg-brand-blue shadow-[0_0_12px_rgba(37,99,235,0.5)]"
-                  : "w-3 bg-white/20 hover:bg-white/40"
+                  : "w-3 bg-slate-300 hover:bg-slate-400"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
