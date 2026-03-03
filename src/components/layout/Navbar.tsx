@@ -22,9 +22,9 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
 
   const navLinks = [
     { name: "Trust", href: "#trust" },
-    { name: "Comparison", href: "#comparison" },
-    { name: "Reviews", href: "#reviews" },
+    { name: "Benefits", href: "#why-it-works" },
     { name: "Certifications", href: "#certifications" },
+    { name: "Reviews", href: "#reviews" },
     { name: "FAQs", href: "#faqs" },
     { name: "Contact", href: "#contact" },
   ];
