@@ -8,6 +8,7 @@ import Navbar from "./components/layout/Navbar";
 import Safety from "./components/sections/Safety";
 import Specs from "./components/sections/Specs";
 import Reviews from "./components/sections/Reviews";
+import FeaturedProducts from "./components/sections/FeaturedProducts";
 import Faqs from "./components/sections/Faqs";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
@@ -49,6 +50,9 @@ function App() {
         </div>
         <div id="reviews">
           <Reviews />
+        </div>
+        <div id="products">
+          <FeaturedProducts />
         </div>
         <div id="faqs">
           <Faqs />
