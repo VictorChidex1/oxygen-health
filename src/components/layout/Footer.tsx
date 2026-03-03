@@ -85,8 +85,10 @@ const Footer: React.FC = () => {
                 {[
                   { label: "Safety", href: "#safety" },
                   { label: "Comparison", href: "#comparison" },
+                  { label: "Certifications", href: "#certifications" },
                   { label: "Specs", href: "#specs" },
                   { label: "Reviews", href: "#reviews" },
+                  { label: "Trust & Proof", href: "#trust" },
                   { label: "FAQs", href: "#faqs" },
                 ].map((link) => (
                   <li key={link.label}>
@@ -134,7 +136,7 @@ const Footer: React.FC = () => {
                         Location
                       </span>
                       <span className="text-slate-700 font-medium">
-                        Naperville, IL 60540
+                        6810 Route 53, Woodridge, IL 60517
                       </span>
                     </div>
                   </div>

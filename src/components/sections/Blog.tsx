@@ -20,7 +20,7 @@ const blogPosts: BlogPost[] = [
       "Top 6 Hyperbaric Oxygen Chambers For At-Home Wellness And Skin Health",
     excerpt:
       "When we talk about beauty and longevity, the focus is shifting away from short-term fixes and toward cellular-level rejuvenation.",
-    image: "/assets/image-section4.jpg", // Mapping to existing assets
+    image: "/assets/image-section4.jpg",
     link: "https://www.oxygenhealthsystems.com/top-6-hyperbaric-oxygen-chambers-for-at-home-wellness-and-skin-health/",
   },
   {
@@ -97,13 +97,13 @@ export default function Blog() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % chunks.length);
-    }, 6000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [chunks.length]);
 
   return (
     <section
-      className="bg-[#0f172a] py-20 lg:py-28 font-sans relative"
+      className="bg-slate-50 py-20 lg:py-28 font-sans relative"
       id="blog"
     >
       {/* Background Decorator overlay */}
@@ -112,10 +112,10 @@ export default function Blog() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Text */}
         <div className="mb-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-3 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-brand-navy tracking-tight mb-3 leading-tight">
             Latest Blog Posts
           </h2>
-          <p className="text-slate-400 text-sm md:text-base font-medium tracking-wide">
+          <p className="text-slate-600 text-sm md:text-base font-medium tracking-wide">
             Fresh updates, tips, and guides.
           </p>
         </div>
@@ -129,15 +129,15 @@ export default function Blog() {
             {chunks.map((chunk, chunkIdx) => (
               <div
                 key={chunkIdx}
-                className="w-full shrink-0 grid grid-cols-3 gap-6 px-1"
+                className="w-full shrink-0 grid grid-cols-3 gap-6 px-1 py-4"
               >
                 {chunk.map((post, idx) => (
                   <div
                     key={idx}
-                    className="bg-[#1e293b] rounded-2xl border border-slate-700/50 overflow-hidden shadow-xl hover:shadow-brand-blue/10 hover:border-slate-600 transition-all duration-300 group flex flex-col h-full"
+                    className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-xl shadow-slate-200/60 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-300 group flex flex-col h-full"
                   >
                     {/* Image Header */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-800">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                       <img
                         src={post.image}
                         alt={post.title}
@@ -148,8 +148,8 @@ export default function Blog() {
                     {/* Card Body */}
                     <div className="p-6 md:p-8 flex flex-col flex-grow">
                       {/* Meta Tags */}
-                      <div className="flex items-center justify-between text-xs font-semibold tracking-wide text-slate-400 mb-4">
-                        <span className="bg-slate-700/50 text-slate-200 px-3 py-1 rounded-md border border-slate-600/50 flex items-center gap-1.5">
+                      <div className="flex items-center justify-between text-xs font-semibold tracking-wide text-slate-500 mb-4">
+                        <span className="bg-brand-blue/10 text-brand-blue px-3 py-1 rounded-md flex items-center gap-1.5">
                           <svg
                             className="w-3.5 h-3.5 text-brand-blue"
                             fill="none"
@@ -168,16 +168,16 @@ export default function Blog() {
                         <span>{post.readTime}</span>
                       </div>
 
-                      <div className="text-xs text-brand-blue font-semibold mb-2">
+                      <div className="text-xs text-brand-blue font-bold uppercase tracking-wide mb-2">
                         {post.date}
                       </div>
 
                       {/* Title & Excerpt */}
-                      <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 leading-snug group-hover:text-blue-200 transition-colors">
+                      <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 leading-snug group-hover:text-brand-blue transition-colors">
                         {post.title}
                       </h3>
 
-                      <p className="text-slate-400 text-sm leading-relaxed mb-8 line-clamp-3">
+                      <p className="text-slate-600 text-sm leading-relaxed mb-8 line-clamp-3">
                         {post.excerpt}
                       </p>
 
@@ -203,7 +203,7 @@ export default function Blog() {
           {/* Left/Right Desktop Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-5 w-12 h-12 bg-[#1e293b]/80 hover:bg-brand-blue backdrop-blur-md rounded-full border border-slate-600 shadow-xl flex items-center justify-center text-slate-300 hover:text-white transition-all z-20 group"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-2 lg:-ml-5 w-12 h-12 bg-white hover:bg-blue-50 rounded-full border border-slate-200 shadow-xl flex items-center justify-center text-brand-navy hover:text-brand-blue transition-all z-20 group"
             aria-label="Previous posts"
           >
             <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
@@ -211,7 +211,7 @@ export default function Blog() {
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-5 w-12 h-12 bg-[#1e293b]/80 hover:bg-brand-blue backdrop-blur-md rounded-full border border-slate-600 shadow-xl flex items-center justify-center text-slate-300 hover:text-white transition-all z-20 group"
+            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-2 lg:-mr-5 w-12 h-12 bg-white hover:bg-blue-50 rounded-full border border-slate-200 shadow-xl flex items-center justify-center text-brand-navy hover:text-brand-blue transition-all z-20 group"
             aria-label="Next posts"
           >
             <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
@@ -223,9 +223,9 @@ export default function Blog() {
           {blogPosts.map((post, idx) => (
             <div
               key={idx}
-              className="bg-[#1e293b] rounded-2xl border border-slate-700/50 overflow-hidden shadow-xl"
+              className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-xl shadow-slate-200/60"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-slate-800">
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                 <img
                   src={post.image}
                   alt={post.title}
@@ -233,19 +233,19 @@ export default function Blog() {
                 />
               </div>
               <div className="p-5 flex flex-col">
-                <div className="flex items-center justify-between text-[11px] font-semibold tracking-wide text-slate-400 mb-3">
-                  <span className="bg-slate-700/50 text-slate-200 px-2.5 py-1 rounded-md border border-slate-600/50">
+                <div className="flex items-center justify-between text-[11px] font-semibold tracking-wide text-slate-500 mb-3">
+                  <span className="bg-brand-blue/10 text-brand-blue px-2.5 py-1 rounded-md">
                     {post.category}
                   </span>
                   <span>{post.readTime}</span>
                 </div>
-                <div className="text-xs text-brand-blue font-semibold mb-2">
+                <div className="text-xs text-brand-blue font-bold uppercase tracking-wide mb-2">
                   {post.date}
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 line-clamp-2 leading-snug">
+                <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2 leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
                   {post.excerpt}
                 </p>
                 <a
@@ -270,8 +270,8 @@ export default function Blog() {
               onClick={() => setCurrentIndex(idx)}
               className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none ${
                 currentIndex === idx
-                  ? "w-8 bg-white"
-                  : "w-3 bg-slate-600 hover:bg-slate-400"
+                  ? "w-8 bg-brand-blue"
+                  : "w-3 bg-slate-300 hover:bg-slate-400"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
