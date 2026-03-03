@@ -3,19 +3,14 @@ import React from "react";
 const ProductVideo: React.FC = () => {
   return (
     <div className="relative rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] border border-white/10 bg-brand-navy/50 aspect-[4/3]">
-      {/* Video Element */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/assets/herman-chamber.jpg"
+      {/* YouTube Embed */}
+      <iframe
         className="w-full h-full object-cover"
-      >
-        <source src="/assets/chamber-loop.mp4" type="video/mp4" />
-        {/* Fallback text if video fails (not requested but good practice) */}
-        Your browser does not support the video tag.
-      </video>
+        src="https://www.youtube.com/embed/kHa3XpTMIwA?autoplay=1&mute=1&loop=1&playlist=kHa3XpTMIwA&controls=0&showinfo=0&rel=0&modestbranding=1"
+        title="Featured on Top Doctor Magazine"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      ></iframe>
 
       {/* Live View Badge */}
       <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/10">

@@ -45,8 +45,8 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ y: 1, scale: 0.98 }}
               onClick={onOpen}
-              className="px-8 py-4 bg-white text-brand-navy font-bold rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] 
-              hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
+              className="w-full sm:w-auto px-8 py-4 bg-white text-brand-navy font-bold rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] 
+                hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all flex items-center justify-center gap-2 text-lg active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
             >
               Get Pricing
               <ArrowRight className="w-5 h-5" />
@@ -61,11 +61,26 @@ const Hero: React.FC<HeroProps> = ({ onOpen }) => {
                   .getElementById("specs")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:bg-white/5 transition-all active:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
+              className="w-full sm:w-auto px-8 py-4 bg-brand-navy border-2 border-white text-white font-semibold rounded-full shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:bg-white/10 transition-all active:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
             >
               View Specs
             </motion.button>
           </div>
+
+          {/* Third Button: "View Soft Chamber Catalog" */}
+          <motion.button
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ y: 1, scale: 0.98 }}
+            onClick={() =>
+              window.open(
+                "https://www.oxygenhealthsystems.com/product-category/all-chambers/lying-soft-chambers/",
+                "_blank"
+              )
+            } // Placeholder action
+            className="mt-4 px-8 py-4 w-full sm:w-fit bg-gradient-to-r from-brand-blue to-blue-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+          >
+            View Soft Chamber Catalog
+          </motion.button>
 
           <TrustBar />
         </div>

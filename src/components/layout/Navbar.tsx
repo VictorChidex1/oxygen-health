@@ -21,9 +21,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
   }, []);
 
   const navLinks = [
-    { name: "Safety", href: "#safety" },
+    { name: "Trust", href: "#trust" },
     { name: "Comparison", href: "#comparison" },
-    { name: "Specs", href: "#specs" },
     { name: "Reviews", href: "#reviews" },
     { name: "Certifications", href: "#certifications" },
     { name: "FAQs", href: "#faqs" },
