@@ -9,6 +9,7 @@ import Safety from "./components/sections/Safety";
 import Specs from "./components/sections/Specs";
 import Reviews from "./components/sections/Reviews";
 import FeaturedProducts from "./components/sections/FeaturedProducts";
+import ImagesAndGallery from "./components/sections/ImagesAndGallery";
 import Faqs from "./components/sections/Faqs";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
@@ -52,6 +53,9 @@ function App() {
         </div>
         <div id="products">
           <FeaturedProducts onOpen={() => setIsModalOpen(true)} />
+        </div>
+        <div id="gallery">
+          <ImagesAndGallery />
         </div>
         <div id="faqs">
           <Faqs />
