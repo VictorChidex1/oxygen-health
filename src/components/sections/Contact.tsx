@@ -12,7 +12,7 @@ import { useLeadForm } from "../../hooks/useLeadForm";
 
 const Contact: React.FC = () => {
   const { submitLead, isLoading, isSuccess, error, resetForm } =
-    useLeadForm("messages");
+    useLeadForm("contacts");
   const [formData, setFormData] = React.useState({
     name: "",
     phone: "",

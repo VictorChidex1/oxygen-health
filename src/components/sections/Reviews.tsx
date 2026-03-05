@@ -70,7 +70,7 @@ const Reviews: React.FC = () => {
                 />
               ))}
             </div>
-            <span className="text-white">Rated 4.9★</span>
+            <span className="text-white">Rated 5.0★</span>
             <span className="text-slate-500">•</span>
             <span>150+ Verified Reviews</span>
           </div>

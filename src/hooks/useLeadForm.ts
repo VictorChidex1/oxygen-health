@@ -11,7 +11,9 @@ interface LeadData {
   message?: string;
 }
 
-export const useLeadForm = (collectionName: "leads" | "messages" = "leads") => {
+export const useLeadForm = (
+  collectionName: "leads" | "messages" | "contacts" = "leads"
+) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);

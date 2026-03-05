@@ -34,8 +34,14 @@ service cloud.firestore {
       allow read, update, delete: if false; // Admin only (via SDK)
     }
 
-    // Rules for 'messages' collection (Contact Form)
+    // Rules for 'messages' collection (Legacy Contact Form)
     match /messages/{messageId} {
+      allow create: if isValidMessage();
+      allow read, update, delete: if false; // Admin only (via SDK)
+    }
+
+    // Rules for 'contacts' collection (New Contact Form)
+    match /contacts/{contactId} {
       allow create: if isValidMessage();
       allow read, update, delete: if false; // Admin only (via SDK)
     }
